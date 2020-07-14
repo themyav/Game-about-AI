@@ -8,6 +8,9 @@ H = 300
 
 pygame.init()
 
+print(pygame.font.get_fonts())
+
+
 win = pygame.display.set_mode((300, 300))
 pygame.display.set_caption('Who is AI?')
 win.fill(cl.AQUAMARINE)
@@ -30,6 +33,7 @@ class Button():
                 action()
         else:
             pygame.draw.rect(win, self.inactive_color, (x, y, self.w, self.h))
+        print_text(message, x + 39, y + 7)
 
 
 def show_menu():
@@ -50,6 +54,13 @@ def show_menu():
         pygame.display.update()
     #clock.tick(FPS)
 
+def print_text(message, x, y, font_color = cl.BLACK, font_type = 'centurygothic', font_size = 30):
+    main_font = pygame.font.SysFont(font_type, font_size)
+    text = main_font.render(message, True, font_color)
+    win.blit(text, (x, y))
+
+
+
 def start_game():
     cur = 0
     while game_cycle():
@@ -57,7 +68,7 @@ def start_game():
 
 def game_cycle():
     play = True
-    button = Button(50, 30, cl.CORAL, cl.PINK)
+    button = Button(170, 50, cl.CORAL, cl.PINK)
     while play:
         for i in pygame.event.get():
             if i.type == pygame.QUIT:
@@ -66,7 +77,8 @@ def game_cycle():
                 #если вместо последних двух строчек писать return, то будет возврат в меню
                 return
         win.fill(cl.AZURE)
-        button.draw(50, 20)
+        button.draw(60, 20)
+        print_text("Hello", 100, 100)
         pygame.display.update()
 
 show_menu()
