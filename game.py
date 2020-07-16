@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*
 import pygame
 import colors as cl
 import fonts as ft
@@ -7,6 +8,8 @@ import fonts as ft
 FPS = 60
 W = 800
 H = 600
+open_info = False #костыль
+play = False
 
 pygame.init()
 
@@ -20,13 +23,19 @@ pygame.display.update()
 
 
 class Button():
-    def __init__(self, w, h, inactive_color, active_color, font_size = 20):
+    def __init__(self, w, h, inactive_color, active_color, font_type = ft.CENTURYGOTHIC, font_size = 20,
+                 font_color = cl.WHITE, is_bold = False, is_italic = False):
         self.w = w
         self.h = h
         self.inactive_color = inactive_color
         self.active_color = active_color
+        self.font_type = font_type
+        self.font_size = font_size
+        self.is_bold = is_bold
+        self.is_italic = is_italic
+        self.font_color = font_color
 
-    def draw(self, x, y, message = 'Button', action = None):
+    def draw(self, x, y, message = 'Button', action = None, w_shift = 10, h_shift = 7):
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
         if x < mouse[0] < x + self.w and y < mouse[1] < y + self.h:
@@ -35,21 +44,28 @@ class Button():
                 action()
         else:
             pygame.draw.rect(win, self.inactive_color, (x, y, self.w, self.h))
-        print_text(message, x + self.w // 3 - 5, y + 7)
+        print_text(message, x + w_shift, y + h_shift, self.font_color, self.font_type, self.font_size, self.is_bold, self.is_italic)
+
+def quit_info():
+    global open_info
+    open_info = False
 
 def show_info():
     info_win = pygame.image.load('info_back.png')
+    global open_info
     open_info = True
+    close_info_button = Button(110, 60, cl.CORAL, cl.LIGHTSALMON, ft.CONSOLAS, 50)
     while open_info:
         for i in pygame.event.get():
             if i.type == pygame.QUIT:
                 return
         win.blit(info_win, (0, 0))
+        close_info_button.draw(W // 2 - 80, 400, 'OK', quit_info, 25, 10)
         info_file = open('info.txt')
-        info_text = info_file.readlines()
-        inf_y = 50
-        for i in info_text:
-            print_text(i, 50, inf_y, cl.GHOSTWHITE, ft.CONSOLAS, 20, True)
+        #info_text = info_file.readlines()
+        inf_y = 80
+        for i in info_file:
+            print_text(i, 50, inf_y, cl.GHOSTWHITE, ft.CONSOLAS, 18, True)
             inf_y += 20
             #нужно избавиться от переводов строк
         pygame.display.update()
@@ -58,9 +74,9 @@ def show_menu():
     global FPS
     menu_background = pygame.image.load('new_menu.png')
     show = True
-    start_button = Button(150, 50, cl.DEEPSKYBLUE, cl.POWDERBLUE)
-    quit_button = Button(150, 50, cl.DEEPSKYBLUE, cl.POWDERBLUE)
-    info_button = Button(150, 50, cl.DEEPSKYBLUE, cl.POWDERBLUE)
+    start_button = Button(150, 50, cl.DEEPSKYBLUE, cl.POWDERBLUE, ft.CONSOLAS, 30, cl.GHOSTWHITE, True)
+    quit_button = Button(150, 50, cl.DEEPSKYBLUE, cl.POWDERBLUE, ft.CONSOLAS, 30, cl.GHOSTWHITE, True)
+    info_button = Button(150, 50, cl.DEEPSKYBLUE, cl.POWDERBLUE, ft.CONSOLAS, 30, cl.GHOSTWHITE, True)
     while show:
         for i in pygame.event.get():
             if i.type == pygame.QUIT:
@@ -68,9 +84,9 @@ def show_menu():
                 quit()
 
         win.blit(menu_background, (0, 0))
-        start_button.draw(W // 3 - 75, 380, 'Start', start_game)
-        quit_button.draw(W // 3 * 2 - 75, 380, 'Quit', quit)
-        info_button.draw(W // 2 - 75, 480, 'Info', show_info)
+        start_button.draw(W // 3 - 75, 380, 'Start', game_cycle, 40)
+        quit_button.draw(W // 3 * 2 - 75, 380, 'Quit', quit, 40)
+        info_button.draw(W // 2 - 75, 480, 'Info', show_info, 40)
         print_text('Game about AI', W // 2 - 200, 150, cl.POWDERBLUE, 'centurygothic', 50, True)
         pygame.display.update()
     #clock.tick(FPS)
@@ -80,26 +96,28 @@ def print_text(message, x, y, font_color = cl.BLACK, font_type = 'centurygothic'
     text = main_font.render(message, True, font_color)
     win.blit(text, (x, y))
 
+def return_to_menu():
+    global play
+    play = False
 
+def redraw_window():
+    win.fill(cl.AZURE)
+    button = Button(150, 40, cl.CORAL, cl.PINK, ft.CONSOLAS, 16, cl.GHOSTWHITE, True)
+    button.draw(W // 3 * 3 - 200, 50, 'Return to menu', return_to_menu)
+    print_text("Hello", W // 2 - 40, 200)
+    block_1 = pygame.draw.rect(win, cl.SLATEBLUE, (W // 3 - 200, 150, 150, 150))
+    block_2 = pygame.draw.rect(win, cl.SLATEBLUE, (W // 3 * 2 - 200, 150, 150, 150))
+    block_3 = pygame.draw.rect(win, cl.SLATEBLUE, (W // 3 * 3 - 200, 150, 150, 150))
 
-def start_game():
-    cur = 0
-    while game_cycle():
-        cur+=1
 
 def game_cycle():
+    global play
     play = True
-    button = Button(170, 50, cl.CORAL, cl.PINK)
     while play:
         for i in pygame.event.get():
             if i.type == pygame.QUIT:
-                #pygame.quit()
-                #quit()
-                #если вместо последних двух строчек писать return, то будет возврат в меню
                 return
-        win.fill(cl.AZURE)
-        button.draw(W // 2 - 85, 100)
-        print_text("Hello", W // 2 - 40, 200)
+        redraw_window()
         pygame.display.update()
 
 show_menu()
