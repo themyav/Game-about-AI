@@ -3,17 +3,17 @@ import colors as cl
 
 
 FPS = 60
-W = 300
-H = 300
+W = 800
+H = 600
 
 pygame.init()
 
 print(pygame.font.get_fonts())
 
 
-win = pygame.display.set_mode((300, 300))
+win = pygame.display.set_mode((W, H))
 pygame.display.set_caption('Who is AI?')
-win.fill(cl.AQUAMARINE)
+win.fill(cl.VIOLET)
 pygame.display.update()
 
 
@@ -38,10 +38,10 @@ class Button():
 
 def show_menu():
     global FPS
-    menu_background = pygame.image.load('menu.png')
+    menu_background = pygame.image.load('new_menu.png')
     show = True
-    start_button = Button(150, 50, cl.AQUAMARINE, cl.PINK)
-    quit_button = Button(150, 50, cl.AQUAMARINE, cl.PINK)
+    start_button = Button(150, 50, cl.DEEPSKYBLUE, cl.POWDERBLUE)
+    quit_button = Button(150, 50, cl.DEEPSKYBLUE, cl.POWDERBLUE)
     while show:
         for i in pygame.event.get():
             if i.type == pygame.QUIT:
@@ -49,8 +49,8 @@ def show_menu():
                 quit()
 
         win.blit(menu_background, (0, 0))
-        start_button.draw(70, 20, 'Start', start_game)
-        quit_button.draw(70, 220, 'Quit', quit)
+        start_button.draw(W // 4 - 75, 380, 'Start', start_game)
+        quit_button.draw(W // 4 * 3 - 75, 380, 'Quit', quit)
         pygame.display.update()
     #clock.tick(FPS)
 
@@ -77,8 +77,8 @@ def game_cycle():
                 #если вместо последних двух строчек писать return, то будет возврат в меню
                 return
         win.fill(cl.AZURE)
-        button.draw(60, 20)
-        print_text("Hello", 100, 100)
+        button.draw(W // 2 - 85, 100)
+        print_text("Hello", W // 2 - 40, 200)
         pygame.display.update()
 
 show_menu()
