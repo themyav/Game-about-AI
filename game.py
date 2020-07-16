@@ -24,7 +24,7 @@ pygame.display.update()
 
 class Button():
     def __init__(self, w, h, inactive_color, active_color, font_type = ft.CENTURYGOTHIC, font_size = 20,
-                 font_color = cl.WHITE, is_bold = False, is_italic = False):
+                 font_color = cl.WHITE, is_bold = False, is_italic = False, show_info = False, info_message = ''):
         self.w = w
         self.h = h
         self.inactive_color = inactive_color
@@ -34,12 +34,17 @@ class Button():
         self.is_bold = is_bold
         self.is_italic = is_italic
         self.font_color = font_color
+        self.show_info = show_info
+        self.info_message = info_message
 
     def draw(self, x, y, message = 'Button', action = None, w_shift = 10, h_shift = 7):
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
         if x < mouse[0] < x + self.w and y < mouse[1] < y + self.h:
             pygame.draw.rect(win, self.active_color, (x, y, self.w, self.h))
+            if self.show_info:
+                pygame.draw.rect(win, cl.PALEVIOLETRED, (x, y + self.h + 10, self.w, self.h))
+                print_text(self.info_message, x + w_shift, y + self.h + 10 + h_shift, self.font_color, self.font_type, self.font_size - 2)
             if click[0] == 1 and action is not None:
                 action()
         else:
@@ -74,9 +79,9 @@ def show_menu():
     global FPS
     menu_background = pygame.image.load('new_menu.png')
     show = True
-    start_button = Button(150, 50, cl.DEEPSKYBLUE, cl.POWDERBLUE, ft.CONSOLAS, 30, cl.GHOSTWHITE, True)
-    quit_button = Button(150, 50, cl.DEEPSKYBLUE, cl.POWDERBLUE, ft.CONSOLAS, 30, cl.GHOSTWHITE, True)
-    info_button = Button(150, 50, cl.DEEPSKYBLUE, cl.POWDERBLUE, ft.CONSOLAS, 30, cl.GHOSTWHITE, True)
+    start_button = Button(150, 50, cl.DEEPSKYBLUE, cl.POWDERBLUE, ft.CONSOLAS, 30, cl.GHOSTWHITE)
+    quit_button = Button(150, 50, cl.DEEPSKYBLUE, cl.POWDERBLUE, ft.CONSOLAS, 30, cl.GHOSTWHITE)
+    info_button = Button(150, 50, cl.DEEPSKYBLUE, cl.POWDERBLUE, ft.CONSOLAS, 30, cl.GHOSTWHITE)
     while show:
         for i in pygame.event.get():
             if i.type == pygame.QUIT:
@@ -108,6 +113,13 @@ def redraw_window():
     block_1 = pygame.draw.rect(win, cl.SLATEBLUE, (W // 3 - 200, 150, 150, 150))
     block_2 = pygame.draw.rect(win, cl.SLATEBLUE, (W // 3 * 2 - 200, 150, 150, 150))
     block_3 = pygame.draw.rect(win, cl.SLATEBLUE, (W // 3 * 3 - 200, 150, 150, 150))
+    button_block_1 = Button(150, 50, cl.TURQUOISE, cl.PALETURQUOISE, ft.CONSOLAS, 20, cl.GHOSTWHITE, 1, 0, 1, 'Your progress:')
+    button_block_2 = Button(150, 50, cl.TURQUOISE, cl.PALETURQUOISE, ft.CONSOLAS, 20, cl.GHOSTWHITE, 1, 0, 1, 'Your progress:')
+    button_block_3 = Button(150, 50, cl.TURQUOISE, cl.PALETURQUOISE, ft.CONSOLAS, 20, cl.GHOSTWHITE, 1, 0, 1, 'Your progress:')
+    #в дальнейшем будет функция получения прогресса в конкретной игре
+    button_block_1.draw(W // 3 - 200, 330, 'Start game 1', None)
+    button_block_1.draw(W // 3 * 2 - 200, 330, 'Start game 2', None)
+    button_block_1.draw(W // 3 * 3 - 200, 330, 'Start game 3', None)
 
 
 def game_cycle():
