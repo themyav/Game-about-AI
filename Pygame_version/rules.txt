@@ -1,0 +1,7 @@
+For # answer @
+For @ answer !
+For <@> answer #
+For $ answer ?
+For % answer <@>
+For * answer !!
+For ^ answer *

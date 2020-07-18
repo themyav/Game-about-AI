@@ -1,18 +1,23 @@
 body{
-    color: blueviolet;
+    color: lavender;
     font-family: Consolas;
     background-color: darkblue;
 }
 h1{
     color: azure;
     text-align: center;
-    padding: 44px;
+    padding-top: 44px;
+    padding-bottom: 10px;
     font-size: 45px;
 }
 #demo{
     color: aqua;
     text-align: center;
-    font-size: 30px;
+    font-size: 20px;
+}
+
+#info{
+    margin-left: 320px;
 }
 .button{
     background-color: aquamarine;
@@ -34,4 +39,20 @@ h1{
 }
 .button_quit{
     margin-left: 70px;
+}
+
+.game_types{
+    margin-left: 100px;
+    width: 300px;
+    height: 300px;
+    font-family: Consolas;
+    font-size: 20px;
+
+}
+.chinese_button{
+    width: 300px;
+    height: 50px
+}
+.chinese_button:hover {
+    background-color: mistyrose;
 }
