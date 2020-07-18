@@ -9,7 +9,7 @@ for line in f:
     words.append(line)
 for line in r:
     rules.append(line)
-
+print(rules)
 def get_answ(s):
     ignore = [False for i in range(len(s))]
     answer = ''

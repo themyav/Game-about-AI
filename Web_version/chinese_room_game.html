@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel = "stylesheet" href = "page_styles/chinese_room.css">
+    <title>Китайская комната</title>
+</head>
+<body>
+    <h1>Китайская комната</h1>
+    <div class="aside_right">
+        <p>Времени осталось:</p>
+        <p id = "time"></p>
+        <p>Ваш результат:</p>
+        <p id="result">0/15 верных ответов </p>
+        <button class = "exit" onclick="document.location='game_map.html'">Выйти из игры</button>
+
+    </div>
+    <div class="aside_left">
+        <p id = "level0">Нет результата</p>
+        <p id = "level1">Нет результата</p>
+         <p id = "level2">Нет результата</p>
+         <p id = "level3">Нет результата</p>
+         <p id = "level4">Нет результата</p>
+         <p id = "level5">Нет результата</p>
+         <p id = "level6">Нет результата</p>
+         <p id = "level7">Нет результата</p>
+         <p id = "level8">Нет результата</p>
+         <p id = "level9">Нет результата</p>
+         <p id = "level10">Нет результата</p>
+         <p id = "level11">Нет результата</p>
+         <p id = "level12">Нет результата</p>
+         <p id = "level13">Нет результата</p>
+         <p id = "level14">Нет результата</p>
+         <p id = "level15">Нет результата</p>
+    </div>
+    <div>
+         <p id = "new_word">Нажми "Проверить", чтобы начать игру.</p>
+        <section class="rules">
+            <p id = "rule0"></p>
+            <p id = "rule1"></p>
+            <p id = "rule2"></p>
+            <p id = "rule3"></p>
+            <p id = "rule4"></p>
+            <p id = "rule5"></p>
+            <p id = "rule6"></p>
+        </section>
+        <input type="text" id = "answer">
+        <button class="start_button" onclick= "change()"><strong>Проверить</strong></button>
+    </div>
+    <script>
+        let foreign_words = ['##\n', '## @\n', '#@# <@>\n', '<@><@>$\n', '@@ ## %\n',
+            '%@@% $$ *\n', '#$# ** % ^\n', '<@> @*^^\n', '#%# #<@># #$#\n', '@<@>@<@> ** %#\n',
+            '%$ @@ ##<@>$^$\n', '%*# %^% %$% %<@>\n', '^@^ ^<@>^b^#^ #\n', '@# #%#^ @<@>#%^<@>$\n',
+            '@# *@*% #%@ **$ #@#^^\n', '$#$$ ^^@^^<@> *$*%% #%#'];
+        let rules = ['На символ # отвечай @\n', 'На символ @ отвечай !\n', 'На символ <@> отвечай #\n',
+            'На символ $ отвечай ?\n', 'На символ % отвечай <@>\n', 'На символ * отвечай !!\n', 'На символ ^ отвечай *\n'];
+        let i = 0;
+        let j = 0;
+        let true_answers = 0;
+        function change() {
+            let word = document.getElementById("new_word").textContent;
+            let user_answer = document.getElementById("answer").value;
+            //document.getElementById("time").innerHTML = String(user_answer);
+            let answer = '';
+            for(let i = 0; i < word.length; i++){
+                if (word[i] === '#') answer += '@';
+                if (word[i] === '@') answer += '!';
+                if (word[i] === '<'){
+                     answer += '#';
+                     i = i + 2;
+                     continue;
+                 }
+                if (word[i] === '$') answer += '?';
+                if (word[i] === '%') answer += '<@>';
+                if (word[i] === '*') answer += '!!';
+                if (word[i] === '^') answer += '*';
+                if (word[i] === ' ') answer += ' ';
+            }
+            if(i == 0)  document.getElementById("result").innerHTML = '0/15 верных ответов';
+            if(i > 0){
+                let pos  = "level" + String(i - 1);
+                if(answer === user_answer) {
+                    document.getElementById(pos).innerHTML = 'Верно';
+                    true_answers++;
+                    document.getElementById("result").innerHTML = String(true_answers) + '/15 верных ответов';
+                }
+                else document.getElementById(pos).innerHTML = 'Ошибка';
+            }
+            if(i < 16){
+                document.getElementById("new_word").innerHTML = foreign_words[i];
+                pos = "rule" + String(j);
+                document.getElementById(pos).innerHTML = rules[j];
+            }
+            else if(i == 16) document.getElementById("new_word").innerHTML = 'Жми на кнопку "Проверить", чтобы сыграть еще раз.';
+            i = (i + 1) % 17;
+            j = (j + 1) % 7;
+        }
+    </script>
+</body>
+
+</html>
+<!--<script src="game_scripts/chinese_room.js"></script>-->
