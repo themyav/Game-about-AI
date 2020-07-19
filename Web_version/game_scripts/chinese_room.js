@@ -42,3 +42,4 @@ let foreign_words = ['##', '## @', '#@# <@>', '<@><@>$', '@@ ## %',
             i = (i + 1) % (words_num + 1);
             j = (j + 1) % rules_num;
         }
+        /*troubles with github?*/
