@@ -72,3 +72,14 @@ h1{
     background-color: aquamarine;
     border: None;
 }
+
+.chinese_button {
+    background-color: aquamarine;
+    font-size: 120%;
+    width: 20%;
+    height: 15%
+}
+
+.chinese_button:hover {
+    background-color: mistyrose;
+}
