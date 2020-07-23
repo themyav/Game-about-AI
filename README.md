@@ -28,6 +28,7 @@ _И другая полезная информация_
     |   ├── dataset.js
     |   ├── dataset.css
     |   └── resources
+    |       ├── logo.svg
     |       └── logo.png
     ├── teach_yourself
     |   ├── teach_yourself.html
