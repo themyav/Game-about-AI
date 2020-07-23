@@ -1,20 +1,3 @@
-body{
-    color: lavender;
-    font-family: Consolas;
-    background-color: darkblue;
-}
-h1{
-    color: azure;
-    text-align: center;
-    padding-top: 3%;
-    margin-bottom: 0;
-    font-size: 300%;
-}
-#info{
-    margin-left: 100px;
-    color: lemonchiffon;
-    font-size: 22px;
-}
 .start_button{
     margin-top: 3%;
     margin-left: 40%;
@@ -43,29 +26,7 @@ h1{
     font-size: 100%;
     color: lemonchiffon;
 }
-.aside_right{
-    height: 100%;
-    width: 15%; /* Установите ширину боковой панели */
-    position: fixed; /* Исправлена боковая панель (оставайтесь на месте при прокрутке) */
-    z-index: 1; /* Оставайтесь вверху */
-    top: 0; /* Оставайтесь внизу */
-    right: 0;
-    padding-top: 3%;
-    text-align: center;
-    background-color: mediumblue;
-}
-.aside_left{
-    height: 100%;
-    width: 15%; /* Установите ширину боковой панели */
-    position: fixed; /* Исправлена боковая панель (оставайтесь на месте при прокрутке) */
-    z-index: 1; /* Оставайтесь вверху */
-    top: 0; /* Оставайтесь внизу */
-    left: 0;
-    padding-top: 3%;
-    text-align: center;
-    color: darkgrey;
-    background-color: mediumblue;
-}
+
 .exit{
     height: 8%;
     width: 80%;

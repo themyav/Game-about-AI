@@ -3,53 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <script src="./room.js"></script>
-    <link rel = "stylesheet" href = "./room.css">
+    <link rel="stylesheet" href="/Game-about-AI/stylesheet.css">
+    <link rel="stylesheet" href="./room.css">
     <title>Китайская комната</title>
 </head>
 <body>
-    <h1>Китайская комната</h1>
-    <?php print('Ловушка пхп')?>;
-    <div class="aside_right">
-        <p>Времени осталось:</p>
-        <p id = "time"></p>
-        <p>Ваш результат:</p>
-        <p id="result">0/16 верных ответов </p>
-        <button class = "exit" onclick="document.location='index.html'">Выйти из игры</button>
-        <!-- /\ FIXME 404-->
-
-    </div>
     <div class="aside_left">
-        <p id = "level0">Нет результата</p>
-        <p id = "level1">Нет результата</p>
-         <p id = "level2">Нет результата</p>
-         <p id = "level3">Нет результата</p>
-         <p id = "level4">Нет результата</p>
-         <p id = "level5">Нет результата</p>
-         <p id = "level6">Нет результата</p>
-         <p id = "level7">Нет результата</p>
-         <p id = "level8">Нет результата</p>
-         <p id = "level9">Нет результата</p>
-         <p id = "level10">Нет результата</p>
-         <p id = "level11">Нет результата</p>
-         <p id = "level12">Нет результата</p>
-         <p id = "level13">Нет результата</p>
-         <p id = "level14">Нет результата</p>
-         <p id = "level15">Нет результата</p>
+        <div>
+            <div id="score_percent" style="font-size: 54px">0%</div>
+            <div style="height: 32px"></div>
+            <div id="score" style="font-size: 28px">0<br>верно из<br>0</div>
+        </div>
+        <div style="height: 100%">
+            <div style="position:absolute; bottom:24px;width: 100%">
+                <section id="results"></section>
+                <div style="height: 32px"></div>
+                <button class="button" style="width: 80%; height:32px; font-size: 24px;" onclick="document.location='./room_rules.html'">Правила</button>
+                <button class="button" style="width: 80%; height:32px; font-size: 24px;" onclick="document.location='/Game-about-AI'">Выход</button>
+            </div>
+        </div>
     </div>
-    <div>
-         <p id = "new_word">Нажми на кнопку, чтобы начать игру.</p>
-        <section class="rules">
-            <p id = "rule0"></p>
-            <p id = "rule1"></p>
-            <p id = "rule2"></p>
-            <p id = "rule3"></p>
-            <p id = "rule4"></p>
-            <p id = "rule5"></p>
-            <p id = "rule6"></p>
-        </section>
-        <input type="text" id = "answer">
-        <button id = "check" class="start_button" onclick= 'change()'><strong>Начать игру!</strong></button>
+    <div style="margin-left: 150px">
+        <h1>Китайская комната</h1>
+        <div id="input_word"></div>
+        <input class="button" type="text" id = "output_got">
+        <button class="button" onclick='button()'>Проверить</button>
+        <section id="rules"></section>
     </div>
+    <script>addRule();</script>
+    <script>updateUI();</script>
 </body>
-
 </html>

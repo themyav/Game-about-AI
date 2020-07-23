@@ -1,7 +1,7 @@
 body {
     color: lavender;
     font-family: Consolas;
-    background-color: #00008b;
+    background-color: darkblue;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -20,13 +20,40 @@ h2 {
     font-size: 200%;
 }
 
+.aside_right{
+    height: 100%;
+    width: 100px;
+    position: fixed; /* Не прокручиваться */
+    z-index: 1; /* Отображение поверх */
+    top: 0;
+    right: 0;
+    padding-top: 12px;
+    text-align: center;
+    background-color: mediumblue;
+}
+.aside_left{
+    height: 100%;
+    width: 150px;
+    position: fixed; /* Не прокручиваться */
+    z-index: 1; /* Отображение поверх */
+    top: 0;
+    left: 0;
+    padding-top: 12px;
+    text-align: center;
+    background-color: mediumblue;
+}
+
 .button {
     background-color: aquamarine;
     color: blue;
-
     font-family: Consolas;
     margin: 2%;
     border: none;
+    font-size: 24px;
+}
+
+button:hover {
+    background-color: mistyrose;
 }
 
 .info {
