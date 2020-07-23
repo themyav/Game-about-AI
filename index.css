@@ -1,6 +1,4 @@
 .games_list {
-    margin: 2% 12%;
-    border: #f0f8ff;
 }
 
 .game_wrapper {
@@ -8,20 +6,22 @@
 }
 
 .game_title {
-    display:inline;
+    /*display:inline;*/
     font-family: Consolas, sans-serif;
     font-size: 28px;
     font-weight: bold;
 }
 
 .game_logo {
-
+    float: left;
+    margin-right: 5px;
 }
 
 .game_description {
     font-family: Consolas, sans-serif;
     font-size: 16px;
     word-wrap: break-spaces;
+    width: 580px;
 }
 
 
