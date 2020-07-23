@@ -13,33 +13,34 @@ _И другая полезная информация_
 ├── index.html
 ├── info.html
 ├── stylesheet.css
+├── index.css
 └── games
     ├── chinese_room
     |   ├── room.html
     |   ├── room_rules.html
     |   ├── room.js
     |   ├── room.css
-    |   └── resourses
-    |       └── logo.svg
+    |   └── resources
+    |       └── logo.png
     ├── create_dataset
     |   ├── dataset.html
     |   ├── dataset_rules.html
     |   ├── dataset.js
     |   ├── dataset.css
-    |   └── resourses
-    |       └── logo.svg
+    |   └── resources
+    |       └── logo.png
     ├── teach_yourself
     |   ├── teach_yourself.html
     |   ├── teach_yourself_rules.html
     |   ├── teach_yourself.js
     |   ├── teach_yourself.css
-    |   └── resourses
-    |       └── logo.svg
+    |   └── resources
+    |       └── logo.png
     └── contol_the_net
         ├── control.html
         ├── control_rules.html
         ├── control.js
         ├── control.css
-        └── resourses
-            └── logo.svg
+        └── resources
+            └── logo.png
 ```
