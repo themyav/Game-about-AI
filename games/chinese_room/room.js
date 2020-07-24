@@ -7,6 +7,9 @@ let tasks_done = 0;
 let last_results = [0, 0, 0, 0, 0];
 let rules_left_on_cur_length = chars.length;
 let cur_rule_len = 1;
+let cur_word_len = 6;
+let delta_len_word = 4;
+let turns_to_inc_word = 5;
 
 function randInt(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
@@ -76,7 +79,13 @@ function updateUI() {
         document.getElementById("score").innerHTML = tasks_done_correct + "<br>верно из<br>" + tasks_done;
     }
 
-    document.getElementById("input_word").innerHTML = newWord(12);
+    turns_to_inc_word -= 1;
+    if (turns_to_inc_word == 0) {
+        turns_to_inc_word = 5;
+        cur_word_len += delta_len_word;
+        delta_len_word = Math.max(delta_len_word - 2, 0);
+    }
+    document.getElementById("input_word").innerHTML = newWord(cur_word_len);
 
     resultsDoc = document.getElementById("results");
     while (resultsDoc.childElementCount > 0) {
@@ -92,6 +101,7 @@ function updateUI() {
 }
 
 function addRule() {
+    if (rules.length >= 15) return;
     if (rules_left_on_cur_length <= 1) {
         cur_rule_len += 1;
         rules_left_on_cur_length = Math.pow(chars.length, cur_rule_len);
@@ -111,7 +121,7 @@ function addRule() {
     let docRules = document.getElementById("rules");
     let newRule = document.createElement('div');
     //newRule.innerHTML = "\"" + input + "\" => \"" + output + "\"";
-    newRule.innerHTML = input.padEnd(7) + " => " + output;
+    newRule.innerHTML = input.padEnd(7) + " заменяй на " + output;
     docRules.insertAdjacentElement("afterbegin", newRule);
 
     rules_left_on_cur_length -= 1;

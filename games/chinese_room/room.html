@@ -18,18 +18,19 @@
             <div style="position:absolute; bottom:24px;width: 100%">
                 <section id="results"></section>
                 <div style="height: 32px"></div>
-                <button class="button" style="width: 80%; height:32px; font-size: 24px;" onclick="document.location='./room_rules.html'">Правила</button>
+                <button class="button" style="width: 80%; height:32px; font-size: 24px;" onclick="document.location='./room_rules.html'">Об игре</button>
                 <button class="button" style="width: 80%; height:32px; font-size: 24px;" onclick="document.location='/Game-about-AI'">Выход</button>
             </div>
         </div>
     </div>
     <!-- /LeftSidebar-->
-    <div style="margin-left: 150px; alignment: center">
+    <div style="margin-left: 150px; align-content: center">
+        <!-- TODO всё содержимое этого div центрировать-->
         <h1>Китайская комната</h1>
-        <div id="input_word"></div>
-        <input type="text" id="output_got" style="display: block">
+        <div id="input_word" style="font-size: 24px; letter-spacing: 0.3em; margin-left: 0.4em;"></div>
+        <input type="text" id="output_got" style="display: block; letter-spacing: 0.3em">
         <button class="button" onclick='button()'>Проверить</button>
-        <section id="rules"></section>
+        <section id="rules" style="font-size: 20px;" ></section>
     </div>
     <script>addRule();</script>
     <script>updateUI();</script>
