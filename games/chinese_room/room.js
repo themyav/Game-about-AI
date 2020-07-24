@@ -1,5 +1,6 @@
-let chars = "!@#$%&*=-+?:;/*"
-let rules = new Map();
+let chars = "!@#%*=-+?:;*" // $ и & не ставить, они какие-то системные
+let rules = []
+let rulesMap = new Map()
 let mapping = new Map([[0, "Нет результата"], [1, "Верно"], [-1, "Ошибка"]]);
 let tasks_done_correct = 0;
 let tasks_done = 0;
@@ -19,6 +20,33 @@ function newWord(length) {
     return word;
 }
 
+function realReplace(source, from, to) {
+    while (source.includes(from)) {
+        source = source.replace(from, to);
+    }
+    return source;
+}
+
+function maskString(str) {
+    let maskedStr = "";
+    let char;
+    for (char of str) {
+        maskedStr = maskedStr + "o" + char;
+    }
+    return maskedStr;
+}
+
+function makeCorrectResult(input) {
+    let maskedInput = maskString(input);
+    let rule;
+    for (rule of rules) {
+        let maskedRule = maskString(rule);
+        maskedInput = realReplace(maskedInput, maskedRule, rulesMap.get(rule));
+    }
+    maskedInput = realReplace(maskedInput, "o", "");
+    return maskedInput;
+}
+
 function button() {
     check();
     addRule();
@@ -26,28 +54,24 @@ function button() {
 }
 
 function check() {
-    // FIXME
     let input = document.getElementById("input_word").textContent;
     let output_got = document.getElementById("output_got").value;
-    let output_correct = input;
-    let rule;
-    for (rule of rules) {
-        output_correct.replace(rule[0], rule[1]);
-    }
+    let output_correct = makeCorrectResult(input);
     console.log(input, output_correct, output_got);
-    last_results.shift();
+
+    last_results.pop();
     tasks_done += 1;
     if (output_got === output_correct) {
-        last_results.push(1);
+        last_results.unshift(1);
         tasks_done_correct += 1;
     }
     else {
-        last_results.push(-1);
+        last_results.unshift(-1);
     }
 }
 
 function updateUI() {
-    if (tasks_done != 0) {
+    if (tasks_done !== 0) {
         document.getElementById("score_percent").innerHTML = Math.floor(tasks_done_correct / tasks_done * 100) + "%";
         document.getElementById("score").innerHTML = tasks_done_correct + "<br>верно из<br>" + tasks_done;
     }
@@ -64,6 +88,7 @@ function updateUI() {
         resultDoc.innerHTML = mapping.get(result);
         resultsDoc.append(resultDoc);
     }
+    document.getElementById("output_got").value = "";
 }
 
 function addRule() {
@@ -76,17 +101,18 @@ function addRule() {
         input = newWord(cur_rule_len);
         output = newWord(cur_rule_len);
         if (input === output) continue;
-        if (rules.has(input) === true) continue;
+        if (rulesMap.has(input) === true) continue;
         break;
     }
 
-    rules.set(input, output);
+    rulesMap.set(input, output);
+    rules.unshift(input);
 
     let docRules = document.getElementById("rules");
     let newRule = document.createElement('div');
     //newRule.innerHTML = "\"" + input + "\" => \"" + output + "\"";
     newRule.innerHTML = input.padEnd(7) + " => " + output;
-    docRules.append(newRule);
+    docRules.insertAdjacentElement("afterbegin", newRule);
 
     rules_left_on_cur_length -= 1;
 }
