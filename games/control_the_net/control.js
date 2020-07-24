@@ -1,14 +1,14 @@
-var canvas;
-var context;
+let canvas;
+let context;
 
 //текущая позиция
-var x = 0;
-var y = 0;
+let x = 0;
+let y = 0;
 
 //скорость перемещения
-var dx = 0;
-var dy = 0;
-var step = 2; //длина шага
+let dx = 0;
+let dy = 0;
+const step = 1; //длина шага
 
 let gameBackground = new Image();
 let information = new Image();
@@ -16,6 +16,13 @@ let node = new Image();
 gameBackground.src = "resources/bc.png";
 information.src = "resources/new_info.png";
 node.src = "resources/node.png";
+
+let nodes = [{"x" : 100, "y" : 100, "weight" : 100}];
+let edges = [];
+
+function getRandom(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
 
 class Edge{
     //TODO
@@ -74,16 +81,12 @@ function updateCanvas() {
     let information = new Information(x, y);
     information.set_Weight();
     information.draw_Information();
-    let node, new_x = 250, new_y = 140;
-    for(let i = 0; i < 5; i++){
-        node = new Node(new_x, new_y);
-        node.set_Weight();
+     checkCollision(x, y);
+    for(let i = 1; i < nodes.length; i++){
+        let node = new Node(nodes[i].x, nodes[i].y);
+        node.set_Weight(nodes[i].weight);
         node.draw_Node();
-        new_x += 120;
-        new_y += 120;
     }
-
-    //context.stroke();
 
 }
 
@@ -98,6 +101,19 @@ function drawBackground(startingX, startingY) {
 
     x = startingX;
     y = startingY;
+
+    let node_y = 100;
+    for(let i = 0; i < 5; i++){ //уровень (слой)
+        let numberNodes = 2 + getRandom(3); //количество нейронов в слое
+        let node_x = 100;
+        for (let j = 0; j < numberNodes; j++){
+            if(j == 0) node_x = node_x + getRandom(100);
+            else node_x = node_x + 170 + getRandom(100);
+            let node_weight = (3 + getRandom(20));
+            nodes.push({"x" : node_x, "y" : node_y, "weight" : node_weight});
+        }
+        node_y += 170;
+    }
 
     updateCanvas();
 
@@ -118,7 +134,31 @@ function processKey(e){
         dx = prev_dx;
         dy = prev_dy;
     }
+    let cx = x + dx, cy = y + dy;
+    /*if(cx > canvas.width + information.width / 2  || cx < -information.width / 2 ||
+       cy > canvas.height + information.height / 2  || cx < -information.height / 2){
+        dx = 0;
+        dy = 0;
+        //если вышел за экран
+    }*/
+    checkCollision(cx, cy);
 
+
+
+}
+
+function checkCollision(cx, cy) {
+    cx = cx + information.width / 2;
+    cy = cy + information.height / 2;
+     for (let i = 1; i < nodes.length; i++){
+         let n_x = nodes[i].x + node.width / 2;
+         let n_y = nodes[i].y + node.height / 2;
+        if( Math.sqrt((n_x - cx) * (n_x- cx)  + (n_y - cy) * (n_y- cy)) < information.width / 2 + node.width / 2){
+            dx = 0;
+            dy = 0;
+            break;
+        }
+    }
 }
 
 function drawFrame() {
@@ -133,11 +173,11 @@ function drawFrame() {
 
 /*
 TODO
-1)вершины генерируются в цикле в самом начале, запоминаются их координаты и потом воссоздаются
-в update
+1)Пересчет весов при столкновении.
 2)класс ребер. Ребра генерируются между каждой парой вершин
+(передается указатель на соответствующие вершины)
+Движение объекта не произвольно, а по ребру. Пока движешься по ребру, нельзя сменить направление.
 3)два объекта - вход и выход соответственно
-4)коллизию
 6)Действия игрока. Однонаправленность, но ВЕТВЛЕНИЕ
 7) нормальные картинки
 
