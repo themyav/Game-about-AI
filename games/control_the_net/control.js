@@ -17,17 +17,33 @@ gameBackground.src = "resources/bc.png";
 information.src = "resources/new_info.png";
 node.src = "resources/node.png";
 
-let nodes = [{"x" : 100, "y" : 100, "weight" : 100}];
+let nodes = [];
 let edges = [];
 
 function getRandom(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
+function drawLine(sx, sy, fx, fy, line_width) {
+    context.beginPath();
+    context.moveTo(sx,sy);
+    context.lineTo(fx,fy);
+    context.lineWidth = line_width;
+    context.stroke();
+
+}
+
 class Edge{
     constructor(left, right) {
         self.left = left;
         self.right = right;
+    }
+    draw_Edge(){
+        let sx = self.left.x + node.width / 2;
+        let sy = self.left.y + node.height / 2;
+        let fx = self.right.x + node.width / 2;
+        let fy = self.right.y + node.height / 2;
+        drawLine(sx, sy, fx, fy, 3);
     }
 }
 
@@ -85,11 +101,18 @@ function updateCanvas() {
     information.set_Weight();
     information.draw_Information();
      checkCollision(x, y);
-    for(let i = 1; i < nodes.length; i++){
+
+     for(let i = 0; i < edges.length; i++){
+        let edge = new Edge(edges[i].left, edges[i].right);
+        edge.draw_Edge();
+    }
+
+    for(let i = 0; i < nodes.length; i++){
         let node = new Node(nodes[i].x, nodes[i].y);
         node.set_Weight(nodes[i].weight);
         node.draw_Node();
     }
+
 
 }
 
@@ -105,17 +128,27 @@ function drawBackground(startingX, startingY) {
     x = startingX;
     y = startingY;
 
-    let node_y = 100;
+    //генерация нейронов
+    let node_y = 80;
     for(let i = 0; i < 5; i++){ //уровень (слой)
         let numberNodes = 2 + getRandom(3); //количество нейронов в слое
         let node_x = 100;
+        let free = canvas.width - (2 * numberNodes) * 100;
+        free = Math.floor(free / numberNodes);
         for (let j = 0; j < numberNodes; j++){
-            if(j == 0) node_x = node_x + getRandom(100);
-            else node_x = node_x + 170 + getRandom(100);
+            if(j == 0) node_x = node_x + getRandom(free);
+            else node_x = node_x + 200 + getRandom(free);
             let node_weight = (3 + getRandom(20));
             nodes.push({"x" : node_x, "y" : node_y, "weight" : node_weight});
         }
         node_y += 170;
+    }
+
+    //генерация связей
+    for(let i = 0; i < nodes.length; i++){
+        for(let j = i + 1; j < nodes.length; j+=2){
+            edges.push({ "left" : nodes[i], "right" : nodes[j]});
+        }
     }
 
     updateCanvas();
