@@ -177,7 +177,7 @@ function processKey(e){
 function checkCollision(cx, cy) {
     cx = cx + information.width / 2;
     cy = cy + information.height / 2;
-     for (let i = 1; i < nodes.length; i++){
+     for (let i = 0; i < nodes.length; i++){
          let n_x = nodes[i].x + node.width / 2;
          let n_y = nodes[i].y + node.height / 2;
         if( Math.sqrt((n_x - cx) * (n_x- cx)  + (n_y - cy) * (n_y- cy)) < information.width / 2 + node.width / 2){
