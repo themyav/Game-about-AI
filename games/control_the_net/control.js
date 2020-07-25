@@ -25,7 +25,10 @@ function getRandom(max) {
 }
 
 class Edge{
-    //TODO
+    constructor(left, right) {
+        self.left = left;
+        self.right = right;
+    }
 }
 
 class Node{
