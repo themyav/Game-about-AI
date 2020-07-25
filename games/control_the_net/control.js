@@ -171,16 +171,7 @@ function processKey(e){
         dy = prev_dy;
     }
     let cx = x + dx, cy = y + dy;
-    /*if(cx > canvas.width + information.width / 2  || cx < -information.width / 2 ||
-       cy > canvas.height + information.height / 2  || cx < -information.height / 2){
-        dx = 0;
-        dy = 0;
-        //если вышел за экран
-    }*/
     checkCollision(cx, cy);
-
-
-
 }
 
 function checkCollision(cx, cy) {
