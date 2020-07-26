@@ -1,3 +1,7 @@
+alert('@TODO: Закончить игру. Для редактирования данного сообщения редактируй js файл.');
+
+var IntervalId;
+
 let canvas;
 let context;
 
@@ -21,7 +25,7 @@ let nodes = [];
 let edges = [];
 
 function getRandom(max) {
-  return Math.floor(Math.random() * Math.floor(max));
+    return Math.floor(Math.random() * Math.floor(max));
 }
 
 function drawLine(sx, sy, fx, fy, line_width) {
@@ -92,17 +96,15 @@ window.onload = function () {
     window.onkeydown = processKey;
 };
 
-let timer;
-
 function updateCanvas() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(gameBackground, 0, 0);
     let information = new Information(x, y);
     information.set_Weight();
     information.draw_Information();
-     checkCollision(x, y);
+    checkCollision(x, y);
 
-     for(let i = 0; i < edges.length; i++){
+    for(let i = 0; i < edges.length; i++){
         let edge = new Edge(edges[i].left, edges[i].right);
         edge.draw_Edge();
     }
@@ -118,7 +120,6 @@ function updateCanvas() {
 
 
 function drawBackground(startingX, startingY) {
-    clearTimeout(timer);
 
     dx = 0;
     dy = 0;
@@ -152,8 +153,6 @@ function drawBackground(startingX, startingY) {
     }
 
     updateCanvas();
-
-    timer = setTimeout("drawFrame()", 10);
 }
 
 function processKey(e){
@@ -177,9 +176,9 @@ function processKey(e){
 function checkCollision(cx, cy) {
     cx = cx + information.width / 2;
     cy = cy + information.height / 2;
-     for (let i = 0; i < nodes.length; i++){
-         let n_x = nodes[i].x + node.width / 2;
-         let n_y = nodes[i].y + node.height / 2;
+    for (let i = 1; i < nodes.length; i++){
+        let n_x = nodes[i].x + node.width / 2;
+        let n_y = nodes[i].y + node.height / 2;
         if( Math.sqrt((n_x - cx) * (n_x- cx)  + (n_y - cy) * (n_y- cy)) < information.width / 2 + node.width / 2){
             dx = 0;
             dy = 0;
@@ -194,9 +193,9 @@ function drawFrame() {
         y += dy;
         updateCanvas();
     }
-    timer = setTimeout("drawFrame()", 10);
-
 }
+
+IntervalId = setInterval(drawFrame, 10);
 
 /*
 TODO
