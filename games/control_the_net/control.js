@@ -1,4 +1,5 @@
 var IntervalId;
+let isPaused = false;
 
 let canvas;
 let context;
@@ -167,10 +168,10 @@ function processKey(e){
     dx = 0;
     dy = 0;
 
-    if(e.keyCode == 38) dy -= step; //up
-    else if(e.keyCode == 40) dy += step; //down
-    else if(e.keyCode == 37) dx -= step; //left
-    else if(e.keyCode == 39) dx += step; // right
+    if(e.keyCode === 38) dy -= step; //up
+    else if(e.keyCode === 40) dy += step; //down
+    else if(e.keyCode === 37) dx -= step; //left
+    else if(e.keyCode === 39) dx += step; // right
     else {
         dx = prev_dx;
         dy = prev_dy;
@@ -202,6 +203,19 @@ function drawFrame() {
 }
 
 IntervalId = setInterval(drawFrame, 10);
+
+function togglePause() {
+    isPaused = !isPaused;
+    if (isPaused) {
+        console.log("Pausing");
+        clearInterval(IntervalId);
+    }
+    else {
+        console.log("Unpausing");
+        IntervalId = setInterval(drawFrame, 10);
+
+    }
+}
 
 /*
 TODO

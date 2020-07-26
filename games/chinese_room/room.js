@@ -126,3 +126,7 @@ function addRule() {
 
     rules_left_on_cur_length -= 1;
 }
+
+function togglePause() {
+    return;
+}

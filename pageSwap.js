@@ -10,4 +10,5 @@ function swapPage() {
         document.getElementById('mainPage').style.display = "block";
         isSwapped = false;
     }
+    togglePause();
 }
