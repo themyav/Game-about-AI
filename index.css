@@ -52,6 +52,10 @@ tr {
     vertical-align: top;
 }
 
+.indexTdImg {
+    vertical-align: top;
+}
+
 #indexText {
     text-align: center;
 }
