@@ -2,13 +2,19 @@ let matchesPerTurn = 2;
 let matchesOnGameBegin = 0;
 let curMatchesTakenByUser = 0;
 let matches = 0;
+const maxMatches = 30;
 
-let AI_Table_Q_Values;
+let games = 0;
+let userWins = 0;
+
+let turns = [];
+
 let AI_Table_Best_Turn = new Map();
 
 function AIMakeTurn() {
+    sleep(500);
     let AITakingMatchesNum = Math.min(AIPredict(), matches);
-    console.log(`From matches ${matches} AI goes ${AITakingMatchesNum}`);
+    turns.push(AITakingMatchesNum);
     matches -= AITakingMatchesNum;
     for (let i = 0; i < matchesOnGameBegin && AITakingMatchesNum > 0; i++) {
         let curMatch = document.getElementById("match" + i) ;
@@ -18,8 +24,8 @@ function AIMakeTurn() {
         }
     }
 
-    console.log(`Now there are ${matches} matches`);
     if (matches === 0) {
+        games++;
         alert("ИИ победил");
         AIRecalc(true);
         generateNewGame();
@@ -32,11 +38,21 @@ function AIPredict() {
     if (AI_Table_Best_Turn.has(matches)) {
         return AI_Table_Best_Turn.get(matches);
     }
-    return randInt(1, 3);
+    return randInt(1, matchesPerTurn + 1);
 }
 
 function AIRecalc(didAIWin) {
-
+    let curMatches = 0;
+    let doIRecord = true;
+    for (let i = turns.length - 1; i >= 0; i -= 1) {
+        curMatches += turns[i];
+        if (doIRecord && !AI_Table_Best_Turn.has(curMatches)) {
+            console.log(`Now i know that on ${curMatches} i turn ${turns[i]}`)
+            AI_Table_Best_Turn.set(curMatches, turns[i]);
+        }
+        doIRecord = !doIRecord;
+    }
+    console.log(AI_Table_Best_Turn);
 }
 
 function endUserTurn() {
@@ -44,8 +60,11 @@ function endUserTurn() {
         alert("Вы должны взять хотя бы одну спичку");
         return;
     }
+    turns.push(curMatchesTakenByUser);
     curMatchesTakenByUser = 0;
     if (matches === 0) {
+        userWins++;
+        games++;
         alert("Вы победили");
         AIRecalc(false);
         generateNewGame();
@@ -66,6 +85,7 @@ function matchesPerTurnChange() {
     newMatchesPerTurn = Math.min(10, Math.max(2, newMatchesPerTurn));
     matchesPerTurnInput.value = newMatchesPerTurn;
     matchesPerTurn = newMatchesPerTurn;
+    AI_Table_Best_Turn.clear();
     generateNewGame();
 }
 
@@ -81,8 +101,7 @@ function userTakesMatch(num) {
 }
 
 function generateNewGame() {
-    matchesOnGameBegin = randInt(matchesPerTurn + 1, 20);
-    console.log(matchesOnGameBegin, matchesPerTurn);
+    matchesOnGameBegin = randInt(matchesPerTurn + 1, maxMatches);
     matches = matchesOnGameBegin;
     curMatchesTakenByUser = 0;
     let matchesHolder = document.getElementById("matches_holder");
@@ -94,12 +113,15 @@ function generateNewGame() {
     for (let i = 0; i < matchesOnGameBegin; i++) {
         matchesHolder.insertAdjacentHTML('beforeend', "<img src=\"resources/match.png\" width=\"24px\" id=\"match" + i + "\" onclick=\"userTakesMatch(" + i + ");\">");
     }
+    turns = [];
     updateUI();
 }
 
 function updateUI() {
     document.getElementById("matchesNumOnTable").innerText = "Число спичек на столе: " + matches;
     document.getElementById("mathcesTakenByUser").innerText = "Вы взяли спичек: " + curMatchesTakenByUser;
+    document.getElementById("score_percent").innerText = Math.floor(AI_Table_Best_Turn.size / maxMatches * 100) + "%";
+    document.getElementById("score").innerHTML = userWins + "<br>побед из<br>" + games;
 }
 
 function togglePause() {
