@@ -1,3 +1,11 @@
 #canvas{
     margin-left: 20%;
 }
+
+#mainPage {
+    display: block;
+}
+
+#supportPage {
+    display: none;
+}

@@ -3,36 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Китайская комната</title>
-    <link rel="stylesheet" href="/Game-about-AI/stylesheet.css">
+    <link rel="stylesheet" href="../../stylesheet.css">
+    <link rel="stylesheet" href="./room.css">
     <script src="./room.js"></script>
+    <script src="pageSwap.js"></script>
 </head>
-<body>
-    <!-- LeftSidebar-->
-    <div class="aside_left">
-        <div>
-            <div id="score_percent" style="font-size: 54px">0%</div>
-            <div style="height: 32px"></div>
-            <div id="score" style="font-size: 28px">0<br>верно из<br>0</div>
-        </div>
-        <div style="height: 100%">
-            <div style="position:absolute; bottom:24px;width: 100%">
-                <section id="results"></section>
+<body onload="addRule(); updateUI();">
+    <!-- MAIN PAGE -->
+    <div id="mainPage">
+        <!-- LeftSidebar-->
+        <div class="aside_left">
+            <div>
+                <div id="score_percent" style="font-size: 54px">0%</div>
                 <div style="height: 32px"></div>
-                <button class="button" style="width: 80%; height:32px; font-size: 24px;" onclick="document.location='./room_rules.html'">Об игре</button>
-                <button class="button" style="width: 80%; height:32px; font-size: 24px;" onclick="document.location='/Game-about-AI'">Выход</button>
+                <div id="score" style="font-size: 28px">0<br>верно из<br>0</div>
+            </div>
+            <div style="height: 100%">
+                <div style="position:absolute; bottom:24px;width: 100%">
+                    <section id="results"></section>
+                    <div style="height: 32px"></div>
+                    <button class="button" style="width: 80%; height:32px; font-size: 24px;" onclick="swap();">Об игре</button>
+                    <button class="button" style="width: 80%; height:32px; font-size: 24px;" onclick="document.location='/Game-about-AI'">Выход</button>
+                </div>
             </div>
         </div>
+        <!-- /LeftSidebar-->
+        <div style="margin-left: 150px; align-content: center">
+            <!-- TODO всё содержимое этого div центрировать-->
+            <h1>Китайская комната</h1>
+            <div id="input_word" style="font-size: 24px; letter-spacing: 0.3em; margin-left: 0.4em;"></div>
+            <input type="text" id="output_got" style="display: block; letter-spacing: 0.3em">
+            <button class="button" onclick='button()'>Проверить</button>
+            <section id="rules" style="font-size: 20px;" ></section>
+        </div>
     </div>
-    <!-- /LeftSidebar-->
-    <div style="margin-left: 150px; align-content: center">
-        <!-- TODO всё содержимое этого div центрировать-->
+    <!-- END OF MAIN PAGE -->
+
+    <!-- SUPPORT PAGE -->
+    <div id="supportPage">
         <h1>Китайская комната</h1>
-        <div id="input_word" style="font-size: 24px; letter-spacing: 0.3em; margin-left: 0.4em;"></div>
-        <input type="text" id="output_got" style="display: block; letter-spacing: 0.3em">
-        <button class="button" onclick='button()'>Проверить</button>
-        <section id="rules" style="font-size: 20px;" ></section>
+        <div>
+            <p>
+                Китайская комната (англ. Chinese room) — мысленный эксперимент в области философии сознания и философии искусственного интеллекта, впервые опубликованный Джоном Сёрлом в 1980 году.<br>
+                Цель эксперимента состоит в опровержении утверждения о том, что цифровая машина, наделённая «искусственным интеллектом» путём её программирования определённым образом, <br>
+                способна обладать сознанием в том же смысле, в котором им обладает человек. Иными словами, целью является опровержение гипотезы так называемого «сильного» искусственного интеллекта и критика теста Тьюринга.
+            </p>
+            <p>
+                В этой игре пользователю будут приходить строки на придуманном языке и правила составления "ответа". Задача игрока - за установленное время отправить верный ответ.
+            </p>
+        </div>
+        <button class="button" onclick="swap();">Продолжить</button>
+        <button class="button" onclick="document.location='/Game-about-AI'">Выход</button>
     </div>
-    <script>addRule();</script>
-    <script>updateUI();</script>
+    <!-- END OF SUPPORT PAGE -->
 </body>
 </html>
