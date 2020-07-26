@@ -56,6 +56,7 @@ function mouseOut(ev) {
     if(drawing) {
         doDrawEvent(ev);
     }
+    drawing = false;
 }
 
 function mouseUp(ev) {

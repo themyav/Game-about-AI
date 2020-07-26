@@ -14,7 +14,7 @@ function swapPage() {
 }
 
 function exitPage() {
-    let ans = confirm("Вы действительно хотите выйти их игры? Ваш прогресс будет утерян.");
+    let ans = confirm("Вы действительно хотите выйти из игры? Ваш прогресс будет утерян.");
 
     if (ans) {
         document.location='../../';
@@ -37,7 +37,7 @@ function sleep(ms) {
 /* GOTO SCRIPTS */
 
 function gotoDraw() {
-    document.location='./games/drawing/drawing.html';
+    document.location='./games/drawingUI/drawingUI.html';
 }
 
 function gotoMatches() {

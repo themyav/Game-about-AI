@@ -17,72 +17,96 @@
             <button class="button" id="indexButton" onclick="swapPage();">Узнать больше</button>
         </div>
         <h2> Игры </h2>
-        <table class="games_list">
-            <tr onclick="document.location='games/chinese_room/room.html'">
-                <td class="indexTdImg">
-                    <div class="game_logo">
-                        <img src="games/chinese_room/resources/logo.png" class="game_logo">
-                    </div>
-                </td>
-                <td class="indexTd">
-                    <div class="game_title">Китайская комната</div>
-                    <div class="game_description">Нажимай на кнопки в нужном порядке и побеждай. Ничего сложного</div>
-                </td>
-            </tr>
-            <tr onclick="document.location='games/control_the_net/control.html'">
-                <td class="indexTdImg">
-                    <div class="game_logo">
-                        <img src="games/control_the_net/resources/logo.png" class="game_logo">
-                    </div>
-                </td>
-                <td class="indexTd">
-                    <div class="game_title">Управляй ИИ</div>
-                    <div class="game_description">Нажимай на кнопки в нужном порядке и побеждай. Ничего сложного</div>
-                </td>
-            </tr>
-            <!--
-            <tr onclick="document.location='games/create_dataset/dataset.html'">
-                <td class="indexTdImg">
-                    <div class="game_logo">
-                        <img src="games/create_dataset/resources/logo.png" class="game_logo">
-                    </div>
-                </td>
-                <td class="indexTd">
-                    <div class="game_title">Создай датасет</div>
-                    <div class="game_description">Нажимай на кнопки в нужном порядке и побеждай. Ничего сложного</div>
-                </td>
-            </tr>
-            -->
-            <tr onclick="document.location='games/matches/matches.html'">
-                <td class="indexTdImg">
-                    <div class="game_logo">
-                        <img src="games/matches/resources/logo.png" class="game_logo">
-                    </div>
-                </td>
-                <td class="indexTd">
-                    <div class="game_title">Обучи ИИ</div>
-                    <div class="game_description">
-                        Нажимай на кнопки в нужном порядке и побеждай. Ничего сложного. Разве что тут я решил поставить текст подлинее,
-                        чтобы проверить отображение длинного текста. И это должен быть достаточно длинный текст. Однако, такого не случилось,
-                        поэтому я вынужден увеличивать длину этого текста весьма странными способами. Например так.
-                        Или ещё, может быть, так. Ещё можно вот так. Но не стоит забывать про этот способ.
-                        Или ещё, может быть, так. Ещё можно вот так. Но не стоит забывать про этот способ.
-                        Или ещё, может быть, так. Ещё можно вот так. Но не стоит забывать про этот способ.
-                    </div>
-                </td>
-            </tr>
-            <tr onclick="document.location='games/test_chamber/tests.html'">
-                <td class="indexTdImg">
-                    <div class="game_logo">
-                        <img src="games/test_chamber/resources/logo.png" class="game_logo">
-                    </div>
-                </td>
-                <td class="indexTd">
-                    <div class="game_title">Тестовая камера</div>
-                    <div class="game_description">Будь осторожен, тут случаются непредсказуемые вещи</div>
-                </td>
-            </tr>
-        </table>
+        <div id="gameList">
+            <table class="games_list">
+                <tr onclick="document.location='games/chinese_room/room.html'">
+                    <td class="indexTdImg">
+                        <div class="game_logo">
+                            <img src="games/chinese_room/resources/logo.png" class="game_logo">
+                        </div>
+                    </td>
+                    <td class="indexTd">
+                        <div class="game_title">Китайская комната</div>
+                        <div class="game_description">Нажимай на кнопки в нужном порядке и побеждай. Ничего сложного</div>
+                    </td>
+                </tr>
+                <tr onclick="document.location='games/control_the_net/control.html'">
+                    <td class="indexTdImg">
+                        <div class="game_logo">
+                            <img src="games/control_the_net/resources/logo.png" class="game_logo">
+                        </div>
+                    </td>
+                    <td class="indexTd">
+                        <div class="game_title">Управляй ИИ</div>
+                        <div class="game_description">Нажимай на кнопки в нужном порядке и побеждай. Ничего сложного</div>
+                    </td>
+                </tr>
+                <!--
+                <tr onclick="document.location='games/create_dataset/dataset.html'">
+                    <td class="indexTdImg">
+                        <div class="game_logo">
+                            <img src="games/create_dataset/resources/logo.png" class="game_logo">
+                        </div>
+                    </td>
+                    <td class="indexTd">
+                        <div class="game_title">Создай датасет</div>
+                        <div class="game_description">Нажимай на кнопки в нужном порядке и побеждай. Ничего сложного</div>
+                    </td>
+                </tr>
+                -->
+                <tr onclick="document.location='games/matches/matches.html'">
+                    <td class="indexTdImg">
+                        <div class="game_logo">
+                            <img src="games/matches/resources/logo.png" class="game_logo">
+                        </div>
+                    </td>
+                    <td class="indexTd">
+                        <div class="game_title">Обучи ИИ</div>
+                        <div class="game_description">
+                            Нажимай на кнопки в нужном порядке и побеждай. Ничего сложного. Разве что тут я решил поставить текст подлинее,
+                            чтобы проверить отображение длинного текста. И это должен быть достаточно длинный текст. Однако, такого не случилось,
+                            поэтому я вынужден увеличивать длину этого текста весьма странными способами. Например так.
+                            Или ещё, может быть, так. Ещё можно вот так. Но не стоит забывать про этот способ.
+                            Или ещё, может быть, так. Ещё можно вот так. Но не стоит забывать про этот способ.
+                            Или ещё, может быть, так. Ещё можно вот так. Но не стоит забывать про этот способ.
+                        </div>
+                    </td>
+                </tr>
+                <tr onclick="document.location='games/test_chamber/tests.html'">
+                    <td class="indexTdImg">
+                        <div class="game_logo">
+                            <img src="games/test_chamber/resources/logo.png" class="game_logo">
+                        </div>
+                    </td>
+                    <td class="indexTd">
+                        <div class="game_title">Тестовая камера</div>
+                        <div class="game_description">Будь осторожен, тут случаются непредсказуемые вещи</div>
+                    </td>
+                </tr>
+                <tr onclick="document.location='games/matches/matches.html'">
+                    <td class="indexTdImg">
+                        <div class="game_logo">
+                            <img src="games/test_chamber/resources/logo.png" class="game_logo">
+                        </div>
+                    </td>
+                    <td class="indexTd">
+                        <div class="game_title">Спички</div>
+                        <div class="game_description">Не чиркай, дело пахнет бензионм.</div>
+                    </td>
+                </tr>
+                <tr onclick="document.location='games/drawing/drawing.html'">
+                    <td class="indexTdImg">
+                        <div class="game_logo">
+                            <img src="games/test_chamber/resources/logo.png" class="game_logo">
+                        </div>
+                    </td>
+                    <td class="indexTd">
+                        <div class="game_title">Рисовальня</div>
+                        <div class="game_description"><small>Кристина, нарисуй что нить</small></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
     <!-- END OF MAIN PAGE -->
 
