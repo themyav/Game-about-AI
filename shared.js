@@ -33,3 +33,13 @@ function sleep(ms) {
         currentDate = Date.now();
     } while (currentDate - date < ms);
 }
+
+/* GOTO SCRIPTS */
+
+function gotoDraw() {
+    document.location='./games/drawing/drawing.html';
+}
+
+function gotoMatches() {
+    document.location='./games/matches/matches.html';
+}
