@@ -5,3 +5,7 @@
 #supportPage {
     display: none;
 }
+
+match {
+    width: 16px;
+}

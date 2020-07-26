@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../../stylesheet.css">
     <link rel="stylesheet" href="matches.css">
     <script src="matches.js"></script>
-    <script src="../../pageSwap.js"></script>
+    <script src="../../shared.js"></script>
     <script src="../../exitScript.js"></script>
 </head>
 <body>
@@ -31,7 +31,17 @@
         <!-- /LeftSidebar-->
         <div class="nonSidebar">
             <h1>Обучи ИИ</h1>
-            @TODO
+            <div style="height: 32px"></div>
+            <h3 id="matchesNumOnTable">Число спичек на столе: 0</h3>
+            <h3 id="mathcesTakenByUser">Вы взяли спичек: 0</h3>
+            <section id="matches_holder"></section>
+            <button class="button" onclick="endUserTurn();">Завершить ход</button>
+            <button class="button" onclick="generateNewGame();">Переиграть</button>
+            <div class="footer">
+                <label for="matchesPerTurn">Максимальное число взятых спичек за ход: </label>
+                <input id="matchesPerTurn" style="font-size: 18px" type="number" min="2" max="10" value="2" onchange="matchesPerTurnChange();">
+                <!-- TODO таблица с подробным прогрессом обучения -->
+            </div>
         </div>
     </div>
     <!-- END OF MAIN PAGE-->
@@ -51,5 +61,6 @@
         <button class="button" onclick="exitPage();">Выход</button>
     </div>
     <!-- END OF SUPPORT PAGE -->
+    <script>generateNewGame();</script>
 </body>
 </html>
