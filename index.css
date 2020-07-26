@@ -20,11 +20,8 @@ table {
     font-weight: bold;
 }
 
-.game_logo {
+IMG.game_logo {
     width: 100px;
-    float: left;
-    margin-right: 8px;
-    margin-bottom: 8px;
 }
 
 .game_description {
@@ -63,13 +60,8 @@ tr {
     width: 100%;
 }
 
-.indexTdImg {
-    width: calc(180px + 10%);
-    vertical-align: center;
-}
-
 tr:hover {
-    background: rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.4);
 }
 
 DIV.game_logo {
