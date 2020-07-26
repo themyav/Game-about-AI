@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./teach.css">
     <script src="teach.js"></script>
     <script src="../../pageSwap.js"></script>
+    <script src="../../exitScript.js"></script>
 </head>
 <body>
     <!-- MAIN PAGE  -->
@@ -23,7 +24,7 @@
                     <section id="results"></section>
                     <div style="height: 32px"></div>
                     <button class="button" style="width: 80%; height:32px; font-size: 24px;" onclick="swapPage();">Об игре</button>
-                    <button class="button" style="width: 80%; height:32px; font-size: 24px;" onclick="document.location='/Game-about-AI'">Выход</button>
+                    <button class="button" style="width: 80%; height:32px; font-size: 24px;" onclick="exitPage();">Выход</button>
                 </div>
             </div>
         </div>
@@ -47,7 +48,7 @@
             </p>
         </div>
         <button class="button" onclick="swapPage();">Продолжить</button>
-        <button class="button" onclick="document.location='/Game-about-AI'">Выход</button>
+        <button class="button" onclick="exitPage();">Выход</button>
     </div>
     <!-- END OF SUPPORT PAGE -->
 </body>
