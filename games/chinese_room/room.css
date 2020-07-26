@@ -5,3 +5,30 @@
 #supportPage {
     display: none;
 }
+
+#gameUI {
+    background: cornflowerblue;
+    margin-left: calc(50% - 100px);
+    margin-right: calc(50% - 230px);
+    border: 1px red solid;
+    width: 350px;
+    min-height: 50%;
+    margin-top: 15%;
+    padding: 10px;
+    text-align: center;
+}
+
+#output_got {
+    width: 280px;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    letter-spacing: 0.3em;
+}
+
+#input_word {
+    font-size: 24px;
+    letter-spacing: 0.3em;
+    text-align: left;
+    margin-left: 35px;
+}

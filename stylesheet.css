@@ -30,6 +30,7 @@ h2 {
     padding-top: 12px;
     text-align: center;
     background-color: mediumblue;
+    float: right;
 }
 .aside_left{
     height: 100%;
