@@ -2,13 +2,14 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>[Testing] Рисование</title>
+    <title>Рисовальня</title>
     <link rel="stylesheet" href="../../stylesheet.css">
     <link rel="stylesheet" href="drawing.css">
-    <script src="drawing.js"></script>
+    <script src="drawingUI.js"></script>
+    <script src="drawingAI.js"></script>
     <script src="../../shared.js"></script>
 </head>
-<body onload="run();">
+<body onload="runScript();">
     <!-- MAIN PAGE -->
     <div id="mainPage">
         <!-- LeftSidebar-->
@@ -29,9 +30,10 @@
         </div>
         <!-- /LeftSidebar-->
         <div class="nonSidebar">
-            <h1>Рисование</h1>
+            <h1>Рисовальня</h1>
             <div id="canvasHolder">
                 <canvas id="canvas" width="256" height="256"></canvas>
+                <button class="button" onclick="clearCanvas();">Очистить</button>
             </div>
         </div>
     </div>
