@@ -8,7 +8,7 @@
     <script src="drawing.js"></script>
     <script src="../../shared.js"></script>
 </head>
-<body>
+<body onload="run();">
     <!-- MAIN PAGE -->
     <div id="mainPage">
         <!-- LeftSidebar-->
@@ -30,8 +30,8 @@
         <!-- /LeftSidebar-->
         <div class="nonSidebar">
             <h1>Рисование</h1>
-            <div>
-                <canvas></canvas>
+            <div id="canvasHolder">
+                <canvas id="canvas" width="256" height="256"></canvas>
             </div>
         </div>
     </div>
