@@ -12,7 +12,6 @@
 <body onload="addRule(); updateUI();">
     <!-- MAIN PAGE -->
     <div id="mainPage">
-        <h1>Китайская комната</h1>
         <!-- LeftSidebar-->
         <div class="aside_left">
             <div>
@@ -30,12 +29,15 @@
             </div>
         </div>
         <!-- /LeftSidebar-->
-        <div id="gameUI">
-            <!-- TODO всё содержимое этого div центрировать-->
-            <div id="input_word"></div>
-            <input type="text" id="output_got">
-            <button class="button" onclick='button();'>Проверить</button>
-            <section id="rules" style="font-size: 20px;" ></section>
+        <div class="nonSidebar">
+            <h1>Китайская комната</h1>
+            <div id="gameUI">
+                <!-- TODO всё содержимое этого div центрировать-->
+                <div id="input_word"></div>
+                <input type="text" id="output_got">
+                <button class="button" onclick='button();'>Проверить</button>
+                <section id="rules" style="font-size: 20px;" ></section>
+            </div>
         </div>
     </div>
     <!-- END OF MAIN PAGE -->

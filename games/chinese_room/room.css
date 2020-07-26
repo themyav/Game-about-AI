@@ -8,12 +8,12 @@
 
 #gameUI {
     background: cornflowerblue;
-    margin-left: calc(50% - 100px);
-    margin-right: calc(50% - 230px);
+    margin-left: auto;
+    margin-right: auto;
     border: 1px red solid;
     width: 350px;
     min-height: 50%;
-    margin-top: 15%;
+    margin-top: 150px;
     padding: 10px;
     text-align: center;
 }
