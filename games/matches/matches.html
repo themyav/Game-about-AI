@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../../stylesheet.css">
     <link rel="stylesheet" href="matches.css">
     <script src="matches.js"></script>
-    <script src="../../pageSwap.js"></script>
+    <script src="../../shared.js"></script>
     <script src="../../exitScript.js"></script>
 </head>
 <body>
@@ -31,7 +31,17 @@
         <!-- /LeftSidebar-->
         <div class="nonSidebar">
             <h1>Обучи ИИ</h1>
-            @TODO
+            <div style="height: 32px"></div>
+            <h3 id="matchesNumOnTable">Число спичек на столе: 0</h3>
+            <h3 id="mathcesTakenByUser">Вы взяли спичек: 0</h3>
+            <section id="matches_holder"></section>
+            <button class="button" onclick="endUserTurn();">Завершить ход</button>
+            <button class="button" onclick="generateNewGame();">Переиграть</button>
+            <div class="footer">
+                <label for="matchesPerTurn">Максимальное число взятых спичек за ход: </label>
+                <input id="matchesPerTurn" style="font-size: 18px" type="number" min="2" max="10" value="2" onchange="matchesPerTurnChange();">
+                <!-- TODO таблица с подробным прогрессом обучения -->
+            </div>
         </div>
     </div>
     <!-- END OF MAIN PAGE-->
@@ -41,15 +51,29 @@
         <h1>Обучи ИИ</h1>
         <div>
             <p>
-                Управляй ею мудро, не используй свою силу зря, веди себя хорошо.
+                Здесь вам предстоит сыграть в игру Баше против системы Искуственного интеллекта.
+                Однако, на момент начала игры он будет совершенно необучен, в связи с чем ему будет непросто победить.
+                Но, после каждой игры он будет проводить анализ своих и ваших ходов, чтобы найти выигрышную стратегию.
             </p>
             <p>
-                Не шали тут.
+                Правила игры Баше очень просты: перед вами на столе расположено несколько спичек. Перед началом обучения вы выбираете
+                наибольшее число спичек, которое каждый из игроков может взять за ход (далее - число k).
+                Во время своего хода каждый из игроков должен взять не менее 1 и не более k спичек. Выигрывает игрок, взявший последнюю спичку.
+                Первый ход ваш.
+            </p>
+            <p>
+                Так как вы, скорее всего, не ИИ, мы поделимся с вами выигрышной стратегией: необходимо ходить так, чтобы после вашего хода
+                число спичек на столе было кратно k + 1.
+            </p>
+            <p>
+                Обучение ИИ - процесс непростой. К тому же никто не гарантирует успеха. Полностью обученный ИИ может выдавать совершенно не те
+                результаты, которые от него ожидают.
             </p>
         </div>
         <button class="button" onclick="swapPage();">Продолжить</button>
         <button class="button" onclick="exitPage();">Выход</button>
     </div>
     <!-- END OF SUPPORT PAGE -->
+    <script>generateNewGame();</script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-var isSwapped = false;
+let isSwapped = false;
 
 function swapPage() {
     if (!isSwapped) {
@@ -11,4 +11,16 @@ function swapPage() {
         isSwapped = false;
     }
     togglePause();
+}
+
+function exitPage() {
+    let ans = confirm("Вы действительно хотите выйти их игры? Ваш прогресс будет утерян.");
+
+    if (ans) {
+        document.location='../../';
+    }
+}
+
+function randInt(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
 }
