@@ -34,12 +34,18 @@ function sleep(ms) {
     } while (currentDate - date < ms);
 }
 
-/* GOTO SCRIPTS */
-
-function gotoDraw() {
-    document.location='./games/drawingUI/drawingUI.html';
+function div(numerator, denominator) {
+    return Math.floor(numerator / denominator);
 }
 
-function gotoMatches() {
-    document.location='./games/matches/matches.html';
+function infoBox() {
+    isSwapped = !isSwapped;
+    if (isSwapped) {
+        document.getElementById('supportBG').style.display = 'block';
+        document.getElementById('supportBG').classList.add('animate');
+    } else {
+        document.getElementById('supportBG').style.display = 'none';
+        document.getElementById('supportBG').classList.remove('animate');
+    }
+    togglePause();
 }
