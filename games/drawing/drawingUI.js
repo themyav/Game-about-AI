@@ -13,9 +13,6 @@ function runScript() {
     canvas = document.getElementById("canvas");
     ctx = canvas.getContext('2d');
 
-    board = document.getElementById('board');
-    ctx2 = board.getContext('2d');
-
     canvas.addEventListener('mousemove', mouseMove);
     canvas.addEventListener('mousedown', mouseDown);
     canvas.addEventListener('mouseout', mouseOut);
@@ -107,25 +104,3 @@ function writeInMatrix() {
         }
     }
 }
-
-/* TEST BOARD CODE */
-
-function paint() {
-    ctx2.beginPath();
-    ctx2.clearRect(0,0,canvasH,canvasW);
-    ctx2.fill();
-    for (let i = 0; i < canvasH; i++) {
-        for (let q = 0; q < canvasW; q++) {
-            if (matrix[q][i] === 1) {
-                ctx2.beginPath();
-                ctx2.rect(i, q, 1, 1);
-                ctx2.fillStyle = 'black';
-                ctx2.fill();
-            }
-        }
-    }
-}
-
-setInterval(paint, 10);
-
-/* TEST BOARD CODE */
