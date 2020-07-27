@@ -20,6 +20,10 @@ function modelLoaded() {
     // use nn.classify() for classifications or nn.predict() for regressions
 }
 
+function out_predict() {
+    console.log('Вы нарисовали шк');
+}
+
 function resizeArray(inputArray) {
     const INPUT_ARRAY_SIZE = 280;
     const OUTPUT_ARRAY_SIZE = 28;

@@ -69,12 +69,16 @@ function mouseOut(ev) {
         doDrawEvent(ev);
     }
     drawing = false;
-    /* ТУТ ВЫЗОВ ФУНКЦИИ ПРИ УХОДЕ МЫШИ С ПОЛЯ РИСОВАНИЯ           РОМА ЛОХ */
+    console.log('Здесь могло быть ваше предсказание');
+    out_predict();
+    /* ТУТ ВЫЗОВ ФУНКЦИИ ПРИ УХОДЕ МЫШИ С ПОЛЯ РИСОВАНИЯ*/
 }
 
 function mouseUp(ev) {
     drawing = false;
-    /* ТУТ ВЫЗОВ ФУНКЦИИ ПРИ ОТПУСКАНИИ МЫШИ                       РОМА ЛОХ*/
+    console.log('Здесь могло быть ваше предсказание');
+    out_predict();
+    /* ТУТ ВЫЗОВ ФУНКЦИИ ПРИ ОТПУСКАНИИ МЫШИ*/
 }
 
 function clearCanvas() {
