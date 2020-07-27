@@ -34,6 +34,11 @@ function sleep(ms) {
     } while (currentDate - date < ms);
 }
 
+function div(numerator, denominator) {
+    return Math.floor(numerator / denominator);
+}
+
+
 /* GOTO SCRIPTS */
 
 function gotoDraw() {
