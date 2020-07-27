@@ -12,8 +12,8 @@ let y = 0;
 let dx = 1;
 let dy = 0;
 const step = 1; //длина шага
-let game_started = true;
 let prev_dx = dx, prev_dy = dy;
+let info_start_weight = 3;
 
 let gameBackground = new Image();
 let information = new Image();
@@ -64,9 +64,9 @@ class Edge{
         let sy = self.left.y + node.height / 2;
         let fx = self.right.x + node.width / 2;
         let fy = self.right.y + node.height / 2;
-        drawLine([sx, sy, fx, sy],  3, true, false, self.color);
-        drawLine([fx, sy, fx, fy],  3, true, false, self.color);
-        turn.push({"x" : fx, "y" : sy});
+        drawLine([sx, sy, sx, fy],  3, true, false, self.color);
+        drawLine([sx, fy, fx, fy],  3, true, false, self.color);
+        //убрали генерацию отсюда
     }
 }
 
@@ -77,9 +77,6 @@ class Node{
     }
     set_Weight(weight = 10){
         this.weight = String(weight);
-    }
-    get_Weight(){
-        return self.weight;
     }
     draw_Node(){
         context.drawImage(node, this.n_x, this.n_y);
@@ -97,9 +94,6 @@ class Information{
     }
     set_Weight(weight = 9){
         this.weight = String(weight);
-    }
-    get_Weight(){
-        return this.weight;
     }
     draw_Information(){
         context.drawImage(information, this.inf_x, this.inf_y);
@@ -138,9 +132,8 @@ function updateCanvas() {
     }
 
     let information = new Information(x, y);
-    information.set_Weight();
+    information.set_Weight(info_start_weight);
     information.draw_Information();
-    //дело в том, что желаемое перемещение должно быть разрешено реализовывать только в пределах нейрона, а не за ним.
 
 }
 
@@ -172,23 +165,34 @@ function drawBackground(startingX, startingY) {
 
     //генерация связей
     for(let i = 0; i < nodes.length; i++){
-        for(let j = i + 1; j < nodes.length; j+=2){
+        for(let j = i + 1; j < nodes.length; j++){
+            console.log('nodes ', i, j);
             let color = colors[getRandom(colors.length)];
             let dir_x, dir_y;
             let sx = nodes[i].x + node.width / 2;
             let sy = nodes[i].y + node.height / 2;
             let fx = nodes[j].x + node.width / 2;
             let fy = nodes[j].y + node.height / 2;
-            if(sx == fx) dir_x = 0;
-            else if(sx < fx) dir_x = 1;
-            else dir_x = -1;
-            if(sy == fy) dir_y = 0;
-            else if(sy < fy) dir_y = 1;
-            else dir_y = -1;
+
+            if(sy === fy) {
+                dir_x = 1;
+                dir_y = 0;
+            }
+            else{
+                dir_x = 0;
+                dir_y = 1;
+            }
+
+            console.log(sx, sy, fx, fy, dir_x, dir_y);
 
             edges.push({ "left" : nodes[i], "right" : nodes[j], "color" : color});
             nodes[i].edges.push({ "left" : nodes[i], "right" : nodes[j], "dir_x" : dir_x, "dir_y" : dir_y});
-            nodes[j].edges.push({ "left" : nodes[i], "right" : nodes[j], "dir_x" : -dir_x, "dir_y" : -dir_y});
+
+            //создание массива поворотов
+            if(sx !== fx && sy !== fy) {
+                let dir = (sy < fy ? 1 : -1);
+                turn.push({"x" : sx, "y" : fy, "dir": dir});
+            }
         }
     }
 
@@ -211,17 +215,56 @@ function processKey(e){
 }
 
 function checkCollision(cx, cy) {
+
     cx = cx + information.width / 2;
     cy = cy + information.height / 2;
+
+    //проверка на поворот
+    for(let i = 0; i < turn.length; i++){
+        if(turn[i].x === cx && turn[i].y === cy){
+            console.log(cx, cy, turn[i].x, turn[i].y, turn[i].dir);
+            dx = turn[i].dir;
+            dy = 0;
+            return true;
+        }
+    }
+
+    //нейрон
     for (let i = 0; i < nodes.length; i++) {
         let n_x = nodes[i].x + node.width / 2;
         let n_y = nodes[i].y + node.height / 2;
         if (cx == n_x && cy == n_y) {
-            console.log(cx, cy, n_x, n_y);
+            //console.log(cx, cy, n_x, n_y);
+            checkWeight(i);
             return true;
         }
     }
     return false;
+}
+
+function checkWeight(i) {
+    if(nodes[i].weight < info_start_weight){
+        dx = 0;
+        dy = 0;
+        alert('Проигрыш');
+    }
+    else{
+        info_start_weight += Math.floor(nodes[i].weight * 0.1);
+        let correct_step = 0, free_dx, free_dy;
+        for(let j = 0; j < nodes[i].edges.length; j++){
+            free_dx = nodes[i].edges[j].dir_x;
+            free_dy = nodes[i].edges[j].dir_y;
+            if(nodes[i].edges[j].dir_x === dx && nodes[i].edges[j].dir_y === y){
+                correct_step = true;
+            }
+        }
+        console.log(correct_step, free_dx, free_dy);
+        if(!correct_step){
+            dx = free_dx;
+            dy = free_dy;
+        }
+    }
+
 }
 
 function drawFrame() {
@@ -256,14 +299,10 @@ function togglePause() {
 }
 /*
 TODO
-1) Когда информация находится в центре нейрона:
-1.1 - проверка весов и алерт о проигрыше, если вес нейрона меньше.
-1.2 иначе:
- - если dx == prev_x и dy == prev_y, то ищем первое свободное ребро и идем в него
- - иначе проверяем, существует ли выбранное ребро. Если да, то идем в него, иначе в какое существует.
-2) Проверка поворотов
-- когда находимся в точке поворота изменяем направление
-3) Можно отдельную функцию взятия координат центра.
+1)проверка того, что поворот принадлежит текущему ребру
+2)начало пути - с точки старта информации, конец - в точке финиша (+ 2 ребра)
+3)возможность изменять веса нейронов
+4)проигрыш, если дальше некуда идти.
 7) нормальные картинки
 
 NOT TO DO!!!!!!!!!!!!!!!!!!!!!
