@@ -1,10 +1,18 @@
 let canvas, ctx;
+let board, ctx2;
 let oldX, oldY;
 let drawing;
+let img;
+
+var matrix = new Array(256);
+
 
 function runScript() {
     canvas = document.getElementById("canvas");
     ctx = canvas.getContext('2d');
+
+    board = document.getElementById('board');
+    ctx2 = board.getContext('2d');
 
     canvas.addEventListener('mousemove', mouseMove);
     canvas.addEventListener('mousedown', mouseDown);
@@ -14,6 +22,8 @@ function runScript() {
     ctx.lineWidth = 2;                                       /* РАЗМЕР КИСТИ */
     ctx.lineCap = "round";
     drawing = false;
+
+    clearCanvas();
 }
 
 function doDraw(x1, y1, x2, y2) {
@@ -22,7 +32,7 @@ function doDraw(x1, y1, x2, y2) {
     ctx.lineTo(x2, y2);
 
     ctx.globalCompositeOperation = "source-over";
-    ctx.strokeStyle = "black";                              /* ЦВЕТ КИСТИ*/
+    ctx.strokeStyle = "#000000";
     ctx.stroke();
 }
 
@@ -49,6 +59,10 @@ function mouseDown(ev) {
 function mouseMove(ev) {
     if(drawing) {
         doDrawEvent(ev);
+        /*let rect = ev.target.getBoundingClientRect();
+        let mouseX = ev.clientX - rect.left;
+        let mouseY = ev.clientY - rect.top;
+        matrix[mouseX][mouseY] = 1;*/
     }
 }
 
@@ -61,10 +75,55 @@ function mouseOut(ev) {
 
 function mouseUp(ev) {
     drawing = false;
+    /* ТУТ ВЫЗОВ ФУНКЦИИ ПРИ ОТПУСКАНИИ МЫШИ                       РОМА ЛОХ*/
 }
 
 function clearCanvas() {
     ctx.beginPath();
-    ctx.clearRect(0,0,256,256)
+    ctx.rect(0, 0, 256, 256);
+    ctx.fillStyle = '#FFF';
     ctx.fill();
+    for (let i = 0; i <= 255; i++) {
+        matrix[i] = new Array(256);
+        for (let q = 0; q <= 255; q++) {
+            matrix[i][q] = 0;
+        }
+    }
 }
+
+function writeInMatrix() {
+    img = ctx.getImageData(0,0,256,256);
+
+    for (let i = 0; i <=255; i++) {
+        for (let q = 0; q <= 255; q++) {
+            let red = img.data[((i * (img.width * 4)) + (q * 4))];
+            if (red < 255) {
+                matrix[i][q] = 1;
+            }
+        }
+    }
+}
+
+setInterval(writeInMatrix, 10);
+
+/* TEST BOARD CODE */
+
+function paint() {
+    ctx2.beginPath();
+    ctx2.clearRect(0,0,256,256);
+    ctx2.fill();
+    for (let i = 0; i <= 255; i++) {
+        for (let q = 0; q <= 255; q++) {
+            if (matrix[q][i] === 1) {
+                ctx2.beginPath();
+                ctx2.rect(i, q, 1, 1);
+                ctx2.fillStyle = 'black';
+                ctx2.fill();
+            }
+        }
+    }
+}
+
+setInterval(paint, 10);
+
+/* TEST BOARD CODE */
