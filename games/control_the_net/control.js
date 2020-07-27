@@ -9,21 +9,26 @@ let x = 0;
 let y = 0;
 
 //скорость перемещения
-let dx = 1;
-let dy = 0;
+let dx = 0;
+let dy = 1;
 const step = 1; //длина шага
 let prev_dx = dx, prev_dy = dy;
 let info_start_weight = 3;
 
+
+//изображения
 let gameBackground = new Image();
 let information = new Image();
 let node = new Image();
+let input_pic = new Image();
+let output_pic = new Image();
 gameBackground.src = "resources/bc.png";
 information.src = "resources/new_info.png";
 node.src = "resources/node.png";
+input_pic.src = "resources/input.png";
+output_pic.src = "resources/output.png";
 
 //массивы
-
 let nodes = [];
 let edges = [];
 let turn = [];
@@ -106,22 +111,26 @@ class Information{
 window.onload = function () {
     canvas = document.getElementById("canvas");
     context = canvas.getContext("2d");
-    drawBackground(21.5, (80 + node.height / 2) - information.height / 2);
+    drawBackground(20.5, 50);//(80 + node.height / 2) - information.height / 2);
     window.onkeydown = processKey;
+    canvas.addEventListener("mousedown", changeWeight);
 };
 
 function updateCanvas() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(gameBackground, 0, 0);
 
+   drawLine([20.5 + information.width / 2, 50, 20.5 + information.width / 2, nodes[0].y + node.height / 2, nodes[0].x + node.width / 2, nodes[0].y + node.height / 2], 5, true, false);
+    drawLine([nodes[nodes.length - 1].x + node.width / 2, nodes[nodes.length - 1].y + node.height / 2, nodes[nodes.length - 1].x + node.height / 2, 850, 1050, 850], 5, true, false);
+
     context.font = "25px Arial";
     context.fillText('Нажми на пробел, чтобы начать движение!', 680, 25);
 
-     drawLine([30, 80, 40, 20, 100, 20, 90, 80, 30, 80 ], 3, false, true, "darkred");
-      drawLine([1030, 880, 1040, 820, 1100, 820, 1090, 880, 1030, 880 ], 3, false, true, "darkred");
+    context.drawImage(input_pic, 20, 20);
+    context.drawImage(output_pic, 1040, 820);
 
     for(let i = 0; i < edges.length; i++){
-        let edge = new Edge(edges[i].left, edges[i].right, edges[i].color);
+        edge = new Edge(edges[i].left, edges[i].right, edges[i].color);
         edge.draw_Edge();
     }
 
@@ -131,9 +140,9 @@ function updateCanvas() {
         node.draw_Node();
     }
 
-    let information = new Information(x, y);
-    information.set_Weight(info_start_weight);
-    information.draw_Information();
+    let info = new Information(x, y);
+    info.set_Weight(info_start_weight);
+    info.draw_Information();
 
 }
 
@@ -183,7 +192,7 @@ function drawBackground(startingX, startingY) {
                 dir_y = 1;
             }
 
-            console.log(sx, sy, fx, fy, dir_x, dir_y);
+            //console.log(sx, sy, fx, fy, dir_x, dir_y);
 
             edges.push({ "left" : nodes[i], "right" : nodes[j], "color" : color});
             nodes[i].edges.push({ "left" : nodes[i], "right" : nodes[j], "dir_x" : dir_x, "dir_y" : dir_y});
@@ -194,6 +203,9 @@ function drawBackground(startingX, startingY) {
                 turn.push({"x" : sx, "y" : fy, "dir": dir});
             }
         }
+         turn.push({"x" : 20.5 + information.width / 2, "y": nodes[0].y + node.height / 2, "dir" : 1});
+         turn.push({"x" : nodes[nodes.length - 1].x + node.height / 2, "y" : 850,  "dir" : 1})
+         nodes[nodes.length - 1].edges.push({"left" : nodes[nodes.length - 1], "right" : nodes[nodes.length - 1], "dir_x" : 1, "dir_y" : 0 });
     }
 
     updateCanvas();
@@ -219,6 +231,13 @@ function checkCollision(cx, cy) {
     cx = cx + information.width / 2;
     cy = cy + information.height / 2;
 
+    if(cx === 1050 && cy === 850){
+        dx = 0;
+        dy = 0;
+        alert('Победа');
+        return true;
+    }
+
     //проверка на поворот
     for(let i = 0; i < turn.length; i++){
         if(turn[i].x === cx && turn[i].y === cy){
@@ -234,7 +253,7 @@ function checkCollision(cx, cy) {
         let n_x = nodes[i].x + node.width / 2;
         let n_y = nodes[i].y + node.height / 2;
         if (cx == n_x && cy == n_y) {
-            //console.log(cx, cy, n_x, n_y);
+            console.log('collision', cx, cy, n_x, n_y);
             checkWeight(i);
             return true;
         }
@@ -266,6 +285,18 @@ function checkWeight(i) {
     }
 
 }
+
+
+function changeWeight(ev) {
+    let cl_x = ev.clientX - canvas.offsetLeft;
+    let cl_y = ev.clientY - canvas.offsetTop;
+    for(let i = 0; i < nodes.length; i++){
+        let cx = nodes[i].x + node.width / 2;
+        let cy = nodes[i].y + node.height / 2;
+        if((cx - cl_x) * (cx - cl_x) + (cy - cl_y) * (cy - cl_y) <= node.width * node.width) nodes[i].weight += 1; //тут иф на окружность
+    }
+}
+
 
 function drawFrame() {
     if(dx != 0 || dy != 0){
@@ -300,8 +331,8 @@ function togglePause() {
 /*
 TODO
 1)проверка того, что поворот принадлежит текущему ребру
-2)начало пути - с точки старта информации, конец - в точке финиша (+ 2 ребра)
-3)возможность изменять веса нейронов
+2)конец - в точке финиша
+3)мсправление бага выходов за экран
 4)проигрыш, если дальше некуда идти.
 7) нормальные картинки
 
