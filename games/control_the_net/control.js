@@ -7,13 +7,15 @@ let context;
 //текущая позиция
 let x = 0;
 let y = 0;
+let cur_edge = -1; //какой индекс ребра в массиве ребер этой вершины
+let cur_node = -1; //от какого ребра идем
 
 //скорость перемещения
 let dx = 0;
 let dy = 1;
 const step = 1; //длина шага
 let prev_dx = dx, prev_dy = dy;
-let info_start_weight = 3;
+let info_start_weight = 3 + getRandom(60);
 
 
 //изображения
@@ -22,6 +24,8 @@ let information = new Image();
 let node = new Image();
 let input_pic = new Image();
 let output_pic = new Image();
+
+//ссылки изображений
 gameBackground.src = "resources/bc.png";
 information.src = "resources/new_info.png";
 node.src = "resources/node.png";
@@ -71,7 +75,6 @@ class Edge{
         let fy = self.right.y + node.height / 2;
         drawLine([sx, sy, sx, fy],  3, true, false, self.color);
         drawLine([sx, fy, fx, fy],  3, true, false, self.color);
-        //убрали генерацию отсюда
     }
 }
 
@@ -102,8 +105,8 @@ class Information{
     }
     draw_Information(){
         context.drawImage(information, this.inf_x, this.inf_y);
-        context.font = "30px arial";
-        context.fillText(this.weight, this.inf_x + 20, this.inf_y + 40);
+        context.font = "20px arial";
+        context.fillText(this.weight, this.inf_x + 15, this.inf_y + 40);
     }
 }
 
@@ -111,7 +114,7 @@ class Information{
 window.onload = function () {
     canvas = document.getElementById("canvas");
     context = canvas.getContext("2d");
-    drawBackground(20.5, 50);//(80 + node.height / 2) - information.height / 2);
+    drawBackground(20.5, 50); //тут задается начальное положение "информации"
     window.onkeydown = processKey;
     canvas.addEventListener("mousedown", changeWeight);
 };
@@ -121,16 +124,16 @@ function updateCanvas() {
     context.drawImage(gameBackground, 0, 0);
 
    drawLine([20.5 + information.width / 2, 50, 20.5 + information.width / 2, nodes[0].y + node.height / 2, nodes[0].x + node.width / 2, nodes[0].y + node.height / 2], 5, true, false);
-    drawLine([nodes[nodes.length - 1].x + node.width / 2, nodes[nodes.length - 1].y + node.height / 2, nodes[nodes.length - 1].x + node.height / 2, 850, 1050, 850], 5, true, false);
+    drawLine([nodes[nodes.length - 1].x + node.width / 2, nodes[nodes.length - 1].y + node.height / 2, nodes[nodes.length - 1].x + node.width / 2, 850, 1050, 850], 5, true, false);
 
     context.font = "25px Arial";
-    context.fillText('Нажми на пробел, чтобы начать движение!', 680, 25);
+    context.fillText('Нажми на любую клавишу, чтобы начать движение!', 590, 25);
 
     context.drawImage(input_pic, 20, 20);
     context.drawImage(output_pic, 1040, 820);
 
     for(let i = 0; i < edges.length; i++){
-        edge = new Edge(edges[i].left, edges[i].right, edges[i].color);
+        let edge = new Edge(edges[i].left, edges[i].right, edges[i].color);
         edge.draw_Edge();
     }
 
@@ -164,9 +167,9 @@ function drawBackground(startingX, startingY) {
         let free = canvas.width - (2 * numberNodes) * 100;
         free = Math.floor(free / numberNodes);
         for (let j = 0; j < numberNodes; j++){
-            if(j == 0) node_x = node_x + getRandom(free);
+            if(j === 0) node_x = node_x + getRandom(free);
             else node_x = node_x + 200 + getRandom(free);
-            let node_weight = (3 + getRandom(20));
+            let node_weight = (3 + getRandom(150));
             nodes.push({"x" : node_x, "y" : node_y, "weight" : node_weight, "edges" : []});
         }
         node_y += 170;
@@ -175,7 +178,7 @@ function drawBackground(startingX, startingY) {
     //генерация связей
     for(let i = 0; i < nodes.length; i++){
         for(let j = i + 1; j < nodes.length; j++){
-            console.log('nodes ', i, j);
+
             let color = colors[getRandom(colors.length)];
             let dir_x, dir_y;
             let sx = nodes[i].x + node.width / 2;
@@ -192,21 +195,23 @@ function drawBackground(startingX, startingY) {
                 dir_y = 1;
             }
 
-            //console.log(sx, sy, fx, fy, dir_x, dir_y);
-
             edges.push({ "left" : nodes[i], "right" : nodes[j], "color" : color});
-            nodes[i].edges.push({ "left" : nodes[i], "right" : nodes[j], "dir_x" : dir_x, "dir_y" : dir_y});
 
-            //создание массива поворотов
             if(sx !== fx && sy !== fy) {
-                let dir = (sy < fy ? 1 : -1);
-                turn.push({"x" : sx, "y" : fy, "dir": dir});
+                let turn_dir = (sx < fx ? 1 : -1);
+                turn.push({"x" : sx, "y" : fy, "dir": turn_dir}); //координаты поворота и направление
+                nodes[i].edges.push({"right" : j, "dir_x" : dir_x, "dir_y" : dir_y , "turn_x" : sx, "turn_y" : fy, "turn_dir" :turn_dir}); //куда ребро, направление ребра, координата поворота
             }
+            else {
+                nodes[i].edges.push({"right" : j, "dir_x" : dir_x, "dir_y" : dir_y , "turn_x" : -1, "turn_y" : -1, "turn_dir" : -2});
+                console.log('nodes ', i, j, sx, sy, fx, fy);
+            } //если ребро прямое, то координаты поворота отрицательны
+
         }
-         turn.push({"x" : 20.5 + information.width / 2, "y": nodes[0].y + node.height / 2, "dir" : 1});
-         turn.push({"x" : nodes[nodes.length - 1].x + node.height / 2, "y" : 850,  "dir" : 1})
-         nodes[nodes.length - 1].edges.push({"left" : nodes[nodes.length - 1], "right" : nodes[nodes.length - 1], "dir_x" : 1, "dir_y" : 0 });
     }
+    //из последней вершины можно повернуть к выходу
+    nodes[nodes.length - 1].edges.push({"right" : nodes[nodes.length - 1], "dir_x" : 0, "dir_y" : 1,
+             "turn_x" : nodes[nodes.length - 1].x + node.width / 2, "turn_y" : 850, "turn_dir" : 1});
 
     updateCanvas();
 }
@@ -231,6 +236,13 @@ function checkCollision(cx, cy) {
     cx = cx + information.width / 2;
     cy = cy + information.height / 2;
 
+    if(cx < 0 || cx > canvas.width || cy < 0 || cy > canvas.height){
+        dx = 0;
+        dy = 0;
+        alert('Ошибка! Выход за край игрового поля!');
+        return true;
+    }
+
     if(cx === 1050 && cy === 850){
         dx = 0;
         dy = 0;
@@ -239,21 +251,23 @@ function checkCollision(cx, cy) {
     }
 
     //проверка на поворот
-    for(let i = 0; i < turn.length; i++){
-        if(turn[i].x === cx && turn[i].y === cy){
-            console.log(cx, cy, turn[i].x, turn[i].y, turn[i].dir);
-            dx = turn[i].dir;
-            dy = 0;
-            return true;
-        }
+    if(cx === 20.5 + information.width / 2 && cy === nodes[0].y + node.height / 2){
+        prev_dx = 1;
+        prev_dy = 0;
+        return false;
+    }
+    else if(cur_node > -1 && nodes[cur_node].edges[cur_edge].turn_x === cx && nodes[cur_node].edges[cur_edge].turn_y === cy){
+        prev_dx = nodes[cur_node].edges[cur_edge].turn_dir;
+        prev_dy = 0;
+        return false;
     }
 
-    //нейрон
+    //проверка попадания в нейрон
     for (let i = 0; i < nodes.length; i++) {
         let n_x = nodes[i].x + node.width / 2;
         let n_y = nodes[i].y + node.height / 2;
-        if (cx == n_x && cy == n_y) {
-            console.log('collision', cx, cy, n_x, n_y);
+        if (cx === n_x && cy === n_y) {
+            cur_node = i;
             checkWeight(i);
             return true;
         }
@@ -261,45 +275,60 @@ function checkCollision(cx, cy) {
     return false;
 }
 
+function gameFailed() {
+    dx = 0;
+    dy = 0;
+    alert('Проигрыш');
+
+}
+
 function checkWeight(i) {
-    if(nodes[i].weight < info_start_weight){
-        dx = 0;
-        dy = 0;
-        alert('Проигрыш');
-    }
+    if(nodes[i].weight < info_start_weight) gameFailed();
     else{
         info_start_weight += Math.floor(nodes[i].weight * 0.1);
-        let correct_step = 0, free_dx, free_dy;
+        let correct_step = false, free_dx = -1, free_dy = -1, new_edge = -1;
+
+        //проверяем, можно ли идти в направлении, заданном пользователем
         for(let j = 0; j < nodes[i].edges.length; j++){
-            free_dx = nodes[i].edges[j].dir_x;
-            free_dy = nodes[i].edges[j].dir_y;
-            if(nodes[i].edges[j].dir_x === dx && nodes[i].edges[j].dir_y === y){
+            if(free_dx === -1){
+                free_dx = nodes[i].edges[j].dir_x;
+                free_dy = nodes[i].edges[j].dir_y;
+                new_edge = j; //если еще не нашли совпадений
+            }
+
+            //если у текущей вершины есть свободное ребро в том же направлении.
+            if(nodes[i].edges[j].dir_x === dx && nodes[i].edges[j].dir_y === dy){
+                new_edge = j;
                 correct_step = true;
+                break;
             }
         }
-        console.log(correct_step, free_dx, free_dy);
         if(!correct_step){
             dx = free_dx;
             dy = free_dy;
         }
+        cur_edge = new_edge;
+        console.log('chose new_edge', cur_edge);
+        if(free_dx === -1 && free_dy === -1) gameFailed();
     }
 
 }
 
 
 function changeWeight(ev) {
+    // изменяем вес нейрона при клике на него
     let cl_x = ev.clientX - canvas.offsetLeft;
     let cl_y = ev.clientY - canvas.offsetTop;
     for(let i = 0; i < nodes.length; i++){
         let cx = nodes[i].x + node.width / 2;
         let cy = nodes[i].y + node.height / 2;
-        if((cx - cl_x) * (cx - cl_x) + (cy - cl_y) * (cy - cl_y) <= node.width * node.width) nodes[i].weight += 1; //тут иф на окружность
+        if((cx - cl_x) * (cx - cl_x) + (cy - cl_y) * (cy - cl_y) <= node.width * node.width) nodes[i].weight += 1;
     }
 }
 
 
 function drawFrame() {
-    if(dx != 0 || dy != 0){
+    if(dx !== 0 || dy !== 0){
         if(checkCollision(x, y)){
             x += dx;
             y += dy;
@@ -330,12 +359,6 @@ function togglePause() {
 }
 /*
 TODO
-1)проверка того, что поворот принадлежит текущему ребру
-2)конец - в точке финиша
-3)мсправление бага выходов за экран
-4)проигрыш, если дальше некуда идти.
-7) нормальные картинки
-
-NOT TO DO!!!!!!!!!!!!!!!!!!!!!
-не переписывать весь код
+1) перевести все пискселы в проценты
+2) красивые картинки
  */
