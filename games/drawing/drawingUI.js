@@ -71,6 +71,7 @@ function mouseOut(ev) {
         doDrawEvent(ev);
     }
     drawing = false;
+    /* ТУТ ВЫЗОВ ФУНКЦИИ ПРИ УХОДЕ МЫШИ С ПОЛЯ РИСОВАНИЯ           РОМА ЛОХ */
 }
 
 function mouseUp(ev) {
