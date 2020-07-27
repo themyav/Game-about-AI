@@ -3,8 +3,10 @@ let board, ctx2;
 let oldX, oldY;
 let drawing;
 let img;
+let canvasH = 280;
+let canvasW = 280;
 
-var matrix = new Array(256);
+var matrix = new Array(canvasH);
 
 
 function runScript() {
@@ -59,10 +61,6 @@ function mouseDown(ev) {
 function mouseMove(ev) {
     if(drawing) {
         doDrawEvent(ev);
-        /*let rect = ev.target.getBoundingClientRect();
-        let mouseX = ev.clientX - rect.left;
-        let mouseY = ev.clientY - rect.top;
-        matrix[mouseX][mouseY] = 1;*/
     }
 }
 
@@ -81,22 +79,22 @@ function mouseUp(ev) {
 
 function clearCanvas() {
     ctx.beginPath();
-    ctx.rect(0, 0, 256, 256);
+    ctx.rect(0, 0, canvasW, canvasH);
     ctx.fillStyle = '#FFF';
     ctx.fill();
-    for (let i = 0; i <= 255; i++) {
-        matrix[i] = new Array(256);
-        for (let q = 0; q <= 255; q++) {
+    for (let i = 0; i < canvasW; i++) {
+        matrix[i] = new Array(canvasH);
+        for (let q = 0; q < canvasH; q++) {
             matrix[i][q] = 0;
         }
     }
 }
 
 function writeInMatrix() {
-    img = ctx.getImageData(0,0,256,256);
+    img = ctx.getImageData(0,0,canvasW,canvasH);
 
-    for (let i = 0; i <=255; i++) {
-        for (let q = 0; q <= 255; q++) {
+    for (let i = 0; i < canvasW; i++) {
+        for (let q = 0; q < canvasH; q++) {
             let red = img.data[((i * (img.width * 4)) + (q * 4))];
             if (red < 255) {
                 matrix[i][q] = 1;
@@ -111,10 +109,10 @@ setInterval(writeInMatrix, 10);
 
 function paint() {
     ctx2.beginPath();
-    ctx2.clearRect(0,0,256,256);
+    ctx2.clearRect(0,0,canvasH,canvasW);
     ctx2.fill();
-    for (let i = 0; i <= 255; i++) {
-        for (let q = 0; q <= 255; q++) {
+    for (let i = 0; i < canvasH; i++) {
+        for (let q = 0; q < canvasW; q++) {
             if (matrix[q][i] === 1) {
                 ctx2.beginPath();
                 ctx2.rect(i, q, 1, 1);
