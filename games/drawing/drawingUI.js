@@ -21,7 +21,7 @@ function runScript() {
     canvas.addEventListener('mouseout', mouseOut);
     canvas.addEventListener('mouseup', mouseUp);
 
-    ctx.lineWidth = 2;                                       /* РАЗМЕР КИСТИ */
+    ctx.lineWidth = 10;                                       /* РАЗМЕР КИСТИ */
     ctx.lineCap = "round";
     drawing = false;
 
@@ -68,16 +68,17 @@ function mouseOut(ev) {
     if(drawing) {
         doDrawEvent(ev);
     }
+    /*
     drawing = false;
     console.log('Здесь могло быть ваше предсказание');
-    out_predict();
-    /* ТУТ ВЫЗОВ ФУНКЦИИ ПРИ УХОДЕ МЫШИ С ПОЛЯ РИСОВАНИЯ*/
+    out_predict(matrix);
+    */
 }
 
 function mouseUp(ev) {
     drawing = false;
-    console.log('Здесь могло быть ваше предсказание');
-    out_predict();
+    writeInMatrix();
+    out_predict(matrix);
     /* ТУТ ВЫЗОВ ФУНКЦИИ ПРИ ОТПУСКАНИИ МЫШИ*/
 }
 
@@ -106,8 +107,6 @@ function writeInMatrix() {
         }
     }
 }
-
-setInterval(writeInMatrix, 10);
 
 /* TEST BOARD CODE */
 
