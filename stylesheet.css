@@ -1,97 +1,27 @@
-body {
-    color: lavender;
-    font-family: Consolas;
-    background-color: darkblue;
-    /*
-    padding-left: 10px;
-    padding-right: 10px;
-     */
-}
-
-h1 {
-    color: azure;
-    text-align: center;
-    margin: 0;
-    /* Как браузер решает font-size: 300%, так и записал */
-    font-size: 48px;
-    font-weight: 700;
-}
-
-h2 {
-    color: azure;
-    text-align: center;
-    margin: 0;
-    font-size: 36px;
-    font-weight: 700;
-}
-
-h3 {
-    color: azure;
-    text-align: center;
-    margin: 0;
-    font-size: 28px;
-    font-weight: 700;
-}
-
-h4 {
-    color: azure;
-    text-align: center;
-    margin: 0;
-    font-size: 20px;
-    font-weight: 700;
-}
-
-.aside_left{
-    height: 100%;
-    width: 150px;
-    position: fixed; /* Не прокручиваться */
-    z-index: 1; /* Отображение поверх */
-    top: 0;
-    left: 0;
-    padding-top: 12px;
-    text-align: center;
-    background-color: mediumblue;
-}
-
-.nonSidebar{
-    margin-left: 150px;
-}
-
-.button {
-    background-color: aquamarine;
-    color: blue;
-    font-family: Consolas;
-    border: none;
-    outline: 2px solid #20b4d9;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: mistyrose;
-}
-
-input {
-    background-color: #7fffd4;
-    color: blue;
-    font-family: Consolas;
-    border: none;
-    outline: 2px solid #20b4d9;
-    margin: 8px;
-    font-size: 24px;
-}
-
-.footer {
-    position:absolute;
-    bottom:24px;
-    /*width: 100%*/
-}
-
 * {
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+body {
+    background: #F2F2F2;
+    color: #1C344C;
+    font-family: "Comic Sans MS", serif;
+    font-size: 20px;
+}
+
+h1 {
+    font-size: 48px;
+    margin: 0;
+}
+
+h3 {
+    font-size: 28px;
+    margin: 0;
+}
+
+.centerText {
+    text-align: center;
 }
