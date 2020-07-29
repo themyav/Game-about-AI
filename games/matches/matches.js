@@ -9,10 +9,12 @@ let userWins = 0;
 
 let turns = [];
 
+let userCanTurn = true;
+let wasTurns = false;
+
 let AI_Table_Best_Turn = new Map();
 
 function AIMakeTurn() {
-    sleep(500);
     let AITakingMatchesNum = Math.min(AIPredict(), matches);
     turns.push(AITakingMatchesNum);
     matches -= AITakingMatchesNum;
@@ -31,6 +33,7 @@ function AIMakeTurn() {
         generateNewGame();
         return;
     }
+    userCanTurn = true;
     updateUI();
 }
 
@@ -41,7 +44,7 @@ function AIPredict() {
     return randInt(1, matchesPerTurn + 1);
 }
 
-function AIRecalc(didAIWin) {
+function AIRecalc() {
     let curMatches = 0;
     let doIRecord = true;
     for (let i = turns.length - 1; i >= 0; i -= 1) {
@@ -56,6 +59,7 @@ function AIRecalc(didAIWin) {
 }
 
 function endUserTurn() {
+    userCanTurn = false;
     if (curMatchesTakenByUser === 0) {
         alert("Вы должны взять хотя бы одну спичку");
         return;
@@ -70,15 +74,17 @@ function endUserTurn() {
         generateNewGame();
         return;
     }
-    AIMakeTurn();
+    setTimeout(() => {  AIMakeTurn(); }, 500);
     updateUI();
 }
 
 function matchesPerTurnChange() {
     let matchesPerTurnInput = document.getElementById("matchesPerTurn");
-    if (!confirm("Вы точно хотите продолжить? Изменение этого значения приведёт к перезапуску игры и потере прогресса обучения.")) {
-        matchesPerTurnInput.value = matchesPerTurn;
-        return;
+    if (wasTurns) {
+        if (!confirm("Вы точно хотите продолжить? Изменение этого значения приведёт к перезапуску игры и потере прогресса обучения.")) {
+            matchesPerTurnInput.value = matchesPerTurn;
+            return;
+        }
     }
 
     let newMatchesPerTurn = matchesPerTurnInput.value;
@@ -87,9 +93,12 @@ function matchesPerTurnChange() {
     matchesPerTurn = newMatchesPerTurn;
     AI_Table_Best_Turn.clear();
     generateNewGame();
+    wasTurns = false;
 }
 
 function userTakesMatch(num) {
+    wasTurns = true;
+    if (!userCanTurn) return;
     matchImg = document.getElementById("match" + num);
     matchImg.style.visibility = "hidden";
     curMatchesTakenByUser += 1;
@@ -101,6 +110,7 @@ function userTakesMatch(num) {
 }
 
 function generateNewGame() {
+    userCanTurn = true;
     matchesOnGameBegin = randInt(matchesPerTurn + 1, maxMatches);
     matches = matchesOnGameBegin;
     curMatchesTakenByUser = 0;
