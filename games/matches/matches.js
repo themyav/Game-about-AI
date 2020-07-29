@@ -15,6 +15,7 @@ let wasTurns = false;
 let AI_Table_Best_Turn = new Map();
 
 function AIMakeTurn() {
+    if (userCanTurn) return;
     let AITakingMatchesNum = Math.min(AIPredict(), matches);
     turns.push(AITakingMatchesNum);
     matches -= AITakingMatchesNum;
