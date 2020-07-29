@@ -83,12 +83,12 @@ DIV.game_logo {
     right: 0;
     bottom: 0;
     margin: auto;
-    width: calc(500px + 5%);
-    height: 300px;
+    width: calc(700px + 5%);
+    height: 800px;
     background: darkblue;
     border-radius: 15px;
     border: 2px gold solid;
-    text-align: center;
+    /*text-align: center;*/
 }
 
 #exitButton {
