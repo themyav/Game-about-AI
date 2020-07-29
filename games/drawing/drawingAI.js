@@ -9,9 +9,24 @@ async function getModel() {
 
 async function out_predict(drawing) {
     result = await doPredictionUser(resizeArray(drawing)).array();
-    document.getElementById('result').innerText = "Вероятно вы нарисовали цифру " + result;
+    updateUI(result[0]);
 }
 
+
+function updateUI(res) {
+    let resElem = document.getElementById('results');
+    while (resElem.childElementCount > 0) {
+        resElem.removeChild(resElem.firstChild);
+    }
+    let html = "";
+    let proba;
+    let digit = 0;
+    for (proba of res) {
+        html = html.concat(`<div style="height: 24px">${digit}<img src="resources/nothingToSeeHere.png" width="${Math.round(proba * 206) + 8}px" height="16px" style="display: inline; border-radius: 4px; margin-top: 8px; margin-left: 8px; margin-right: 8px">${Math.round(proba * 100)}%</div>`);
+        digit += 1;
+    }
+    resElem.innerHTML = html;
+}
 function resizeArray(inputArray) {
     const INPUT_ARRAY_SIZE = 280;
     const OUTPUT_ARRAY_SIZE = 28;
@@ -35,5 +50,5 @@ function resizeArray(inputArray) {
 }
 
 function doPredictionUser(input) {
-    return model.predict(tf.tensor(input).reshape([1, IMAGE_HEIGHT, IMAGE_WIDTH, 1])).argMax(-1);
+    return model.predict(tf.tensor(input).reshape([1, IMAGE_HEIGHT, IMAGE_WIDTH, 1]))/*.argMax(-1)*/;
 }

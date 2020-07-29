@@ -17,7 +17,7 @@ function exitPage() {
     let ans = confirm("Вы действительно хотите выйти из игры? Ваш прогресс будет утерян.");
 
     if (ans) {
-        document.location='../../';
+        document.location='../../index.html';
     }
 }
 

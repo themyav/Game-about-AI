@@ -16,8 +16,8 @@ function runScript() {
     canvas.addEventListener('mousemove', mouseMove);
     canvas.addEventListener('mousedown', mouseDown);
     canvas.addEventListener('mouseout', mouseOut);
-    canvas.addEventListener('mouseup', mouseUp);
-
+    //canvas.addEventListener('mouseup', mouseUp);
+    document.addEventListener('mouseup', mouseUp);
     ctx.lineWidth = 10;                                       /* РАЗМЕР КИСТИ */
     ctx.lineCap = "round";
     drawing = false;
@@ -90,6 +90,7 @@ function clearCanvas() {
             matrix[i][q] = 0;
         }
     }
+    //updateUI([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
 }
 
 function writeInMatrix() {

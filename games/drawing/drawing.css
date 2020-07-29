@@ -9,6 +9,6 @@
 #canvasHolder canvas {
     display: block;
     background: white;
-    border: 2px red solid;
+    outline: 2px red solid;
     cursor: crosshair;
 }
