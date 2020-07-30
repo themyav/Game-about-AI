@@ -8,38 +8,35 @@
     <link rel="stylesheet" href="./control.css">
     <script src="control.js"></script>
     <script src="../../shared.js"></script>
-    <script src="../../exitScript.js"></script>
 </head>
 <body>
     <!-- MAIN PAGE -->
-    <div id="mainPage">
-        <div class="sidePanel navHolder">
-            <button class="navButton" onclick="swapPage();">Об игре</button>
-            <button class="navButton" onclick="exitPage();">Выход</button>
-        </div>
-        <div class="nonSidebar">
-            <h1>Управляй нейросетью</h1>
-            <canvas id="canvas"></canvas>
-        </div>
+    <div class="sidePanel navHolder">
+        <button class="navButton" onclick="swapPage();">Об игре</button>
+        <button class="navButton" onclick="exitPage();">Выход</button>
+    </div>
+    <div class="nonSidebar">
+        <h1>Управляй нейросетью</h1>
+        <canvas id="canvas"></canvas>
     </div>
     <!-- END OF MAIN PAGE -->
 
     <!-- SUPPORT PAGE -->
-    <div id="supportPage">
-        <h1>Управляй нейросетью</h1>
-        <div>
-            <p>
-                Чтобы выбрать, в каком направлении пойдет информация из следующего нейрона - нажмай на стрелки. Чтобы
-                увеличить вес нейрона на единицу, нужно кликнуть на него мышью.<br>
-                Нельзя пройти через нейрон, если его вес меньше веса данных. Ваша задача - довести информацию до вывода.
-                Веса и расположения нейронов генерируются случайно.
-            </p>
-            <p>
-                Не шали тут.
-            </p>
+    <div id="supportBG" onclick="swapPage();">
+        <div id="supportPage">
+            <h1>Управляй нейросетью</h1>
+            <div id="supportText">
+                <p>
+                    Чтобы выбрать, в каком направлении пойдет информация из следующего нейрона - нажмай на стрелки. Чтобы
+                    увеличить вес нейрона на единицу, нужно кликнуть на него мышью.<br>
+                    Нельзя пройти через нейрон, если его вес меньше веса данных. Ваша задача - довести информацию до вывода.
+                    Веса и расположения нейронов генерируются случайно.
+                </p>
+                <p>
+                    Не шали тут.
+                </p>
+            </div>
         </div>
-        <button class="navButton" onclick="swapPage();">Продолжить</button>
-        <button class="navButton" onclick="exitPage();">Выход</button>
     </div>
     <!-- END OF SUPPORT PAGE -->
 </body>
