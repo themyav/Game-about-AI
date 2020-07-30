@@ -57,12 +57,12 @@ button {
     border-radius: 8px;
     width: max-content;
     cursor: pointer;
+    margin: 4px;
 }
 
 .navButton {
     width: 140px;
     height: 32px;
-    margin: 4px;
 }
 
 .scoreHolder {

@@ -22,7 +22,7 @@ function updateUI(res) {
     let proba;
     let digit = 0;
     for (proba of res) {
-        html = html.concat(`<div style="height: 24px">${digit}<img src="resources/nothingToSeeHere.png" width="${Math.round(proba * 206) + 8}px" height="16px" style="display: inline; border-radius: 4px; margin-top: 8px; margin-left: 8px; margin-right: 8px">${Math.round(proba * 100)}%</div>`);
+        html = html.concat(`<div style="height: 24px">${digit}<img src="resources/nothingToSeeHere.png" width="${Math.round(proba * 206) + 8}px" height="16px">${Math.round(proba * 100)}%</div>`);
         digit += 1;
     }
     resElem.innerHTML = html;
