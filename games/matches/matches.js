@@ -122,7 +122,7 @@ function generateNewGame() {
     }
 
     for (let i = 0; i < matchesOnGameBegin; i++) {
-        matchesHolder.insertAdjacentHTML('beforeend', "<img src=\"resources/match.png\" width=\"24px\" id=\"match" + i + "\" onclick=\"userTakesMatch(" + i + ");\">");
+        matchesHolder.insertAdjacentHTML('beforeend', `<img src="resources/match.png" id="match${i}" class="match" onclick="userTakesMatch(${i});">`);
     }
     turns = [];
     updateUI();
@@ -132,7 +132,7 @@ function updateUI() {
     document.getElementById("matchesNumOnTable").innerText = "Число спичек на столе: " + matches;
     document.getElementById("mathcesTakenByUser").innerText = "Вы взяли спичек: " + curMatchesTakenByUser;
     document.getElementById("score_percent").innerText = Math.floor(AI_Table_Best_Turn.size / maxMatches * 100) + "%";
-    document.getElementById("score").innerHTML = userWins + "<br>побед из<br>" + games;
+    document.getElementById("score").innerHTML = userWins + " побед из " + games;
 }
 
 function togglePause() {

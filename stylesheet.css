@@ -7,21 +7,80 @@
 
 body {
     background: #F2F2F2;
-    color: #1C344C;
-    font-family: "Comic Sans MS", serif;
+    color: #1c344c;
+    font-family: 'FuturaMediumC', sans-serif;
     font-size: 20px;
 }
 
 h1 {
+    font-weight: 500;
     font-size: 48px;
     margin: 0;
+    text-align: center;
+}
+
+h2 {
+    font-weight: 500;
+    font-size: 38px;
+    margin: 0;
+    text-align: center;
 }
 
 h3 {
+    font-weight: 500;
     font-size: 28px;
     margin: 0;
+    text-align: center;
 }
 
 .centerText {
     text-align: center;
+}
+
+.nonSidebar {
+    position: relative;
+}
+
+.sidePanel {
+    background: rgba(0, 0, 0, 0.13);
+    padding: 8px;
+    border-radius: 16px;
+    z-index: 1;
+    /*display: inline;*/
+}
+
+button {
+    font-family: 'FuturalightC', sans-serif;
+    font-size: 24px;
+    background: rgba(255, 255, 255, 0);
+    border: #3c3c3c 2px solid;
+    border-radius: 8px;
+    width: max-content;
+}
+
+.navButton {
+    width: 140px;
+    height: 32px;
+    margin: 4px;
+}
+
+.scoreHolder {
+    text-align: center;
+    width: 200px;
+    margin: 16px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.navHolder {
+    width: 148px;
+    margin: 16px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+button:hover {
+    background: rgba(0, 0, 0, 0.13);
 }

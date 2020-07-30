@@ -9,75 +9,76 @@
     <script src="../../shared.js"></script>
 </head>
 <body>
-    <!-- MAIN PAGE  -->
-    <div id="mainPage">
-        <!-- LeftSidebar-->
-        <div class="aside_left">
-            <div>
-                <div id="score_percent" style="font-size: 54px">0%</div>
-                <div style="height: 32px"></div>
-                <div id="score" style="font-size: 28px">0<br>побед из<br>0</div>
-            </div>
-            <div style="height: 100%">
-                <div style="position:absolute; bottom:24px;width: 100%">
-                    <button class="button" style="width: 80%; height:32px; font-size: 24px;" onclick="swapPage();">Об игре</button>
-                    <button class="button" style="width: 80%; height:32px; font-size: 24px;" onclick="exitPage();">Выход</button>
-                </div>
-            </div>
-        </div>
-        <!-- /LeftSidebar-->
-        <div class="nonSidebar">
-            <h1>Обучи ИИ</h1>
-            <div style="height: 32px"></div>
-            <h3 id="matchesNumOnTable">Число спичек на столе: 0</h3>
-            <h3 id="mathcesTakenByUser">Вы взяли спичек: 0</h3>
+<!-- MAIN PAGE  -->
+<div id="mainPage">
+    <div class="sidePanel scoreHolder">
+        <div id="score_percent" style="font-size: 54px">0%</div>
+        <div id="score" style="font-size: 28px">0 побед из 0</div>
+    </div>
+    <div class="sidePanel navHolder">
+        <button class="navButton" onclick="swapPage();">Об игре</button>
+        <button class="navButton" onclick="exitPage();">Выход</button>
+    </div>
+    <div class="nonSidebar">
+        <h1>Обучи ИИ</h1>
+        <!--<div style="height: 32px"></div>-->
+        <h3 id="matchesNumOnTable">Число спичек на столе: 0</h3>
+        <h3 id="mathcesTakenByUser">Вы взяли спичек: 0</h3>
+        <div class="gamePlayground">
             <section id="matches_holder"></section>
-            <button class="button" onclick="endUserTurn();">Завершить ход</button>
-            <button class="button" onclick="generateNewGame();">Переиграть</button>
+            <button class="" onclick="endUserTurn();">Завершить ход</button>
+            <button class="" onclick="generateNewGame();">Переиграть</button>
             <div class="footer">
                 <label for="matchesPerTurn">Максимальное число взятых спичек за ход: </label>
-                <input id="matchesPerTurn" style="font-size: 18px" type="number" min="2" max="10" value="2" onchange="matchesPerTurnChange();">
+                <input id="matchesPerTurn" style="font-size: 18px" class="input" type="number" min="2" max="10"
+                       value="2" onchange="matchesPerTurnChange();">
                 <!-- TODO таблица с подробным прогрессом обучения -->
             </div>
         </div>
     </div>
-    <!-- END OF MAIN PAGE-->
+</div>
+<!-- END OF MAIN PAGE-->
 
-    <!-- SUPPORT PAGE -->
-    <div id="supportPage">
-        <h1>Обучи ИИ</h1>
-        <div>
-            <p>
-                Здесь вам предстоит сыграть в игру Баше против системы Искуственного интеллекта.
-                Однако, на момент начала игры он будет совершенно необучен, в связи с чем ему будет непросто победить.
-                Но, после каждой игры он будет проводить анализ своих и ваших ходов, чтобы найти выигрышную стратегию.
-            </p>
-            <p>
-                Правила игры Баше очень просты: перед вами на столе расположено несколько спичек. Перед началом обучения вы выбираете
-                наибольшее число спичек, которое каждый из игроков может взять за ход (далее - число k).
-                Во время своего хода каждый из игроков должен взять не менее 1 и не более k спичек. Выигрывает игрок, взявший последнюю спичку.
-                Первый ход ваш.
-            </p>
-            <p>
-                Чтобы взять спичку - просто нажмите на неё. Если вы взяли максимальное число спичек, ваш ход завершится автоматически.
-                Но вы всегда можете завершить свой ход самостоятельно, нажав на соответствующую кнопку.
-            </p>
-            <p>
-                Так как вы, скорее всего, не ИИ, мы поделимся с вами выигрышной стратегией: необходимо ходить так, чтобы после вашего хода
-                число спичек на столе было кратно k + 1.
-            </p>
-            <p>
-                Обучение ИИ - процесс непростой. К тому же никто не гарантирует успеха. Полностью обученный ИИ может выдавать совершенно не те
-                результаты, которые от него ожидают.
-            </p>
-            <p>
-                На боковой панели отображается прогресс обучения в процентах и число ваших побед.
-            </p>
-        </div>
-        <button class="button" onclick="swapPage();">Продолжить</button>
-        <button class="button" onclick="exitPage();">Выход</button>
+<!-- SUPPORT PAGE -->
+<div id="supportPage">
+    <h1>Обучи ИИ</h1>
+    <div>
+        <p>
+            Здесь вам предстоит сыграть в игру Баше против системы Искуственного интеллекта.
+            Однако, на момент начала игры он будет совершенно необучен, в связи с чем ему будет непросто победить.
+            Но, после каждой игры он будет проводить анализ своих и ваших ходов, чтобы найти выигрышную стратегию.
+        </p>
+        <p>
+            Правила игры Баше очень просты: перед вами на столе расположено несколько спичек. Перед началом обучения вы
+            выбираете
+            наибольшее число спичек, которое каждый из игроков может взять за ход (далее - число k).
+            Во время своего хода каждый из игроков должен взять не менее 1 и не более k спичек. Выигрывает игрок,
+            взявший последнюю спичку.
+            Первый ход ваш.
+        </p>
+        <p>
+            Чтобы взять спичку - просто нажмите на неё. Если вы взяли максимальное число спичек, ваш ход завершится
+            автоматически.
+            Но вы всегда можете завершить свой ход самостоятельно, нажав на соответствующую кнопку.
+        </p>
+        <p>
+            Так как вы, скорее всего, не ИИ, мы поделимся с вами выигрышной стратегией: необходимо ходить так, чтобы
+            после вашего хода
+            число спичек на столе было кратно k + 1.
+        </p>
+        <p>
+            Обучение ИИ - процесс непростой. К тому же никто не гарантирует успеха. Полностью обученный ИИ может
+            выдавать совершенно не те
+            результаты, которые от него ожидают.
+        </p>
+        <p>
+            На боковой панели отображается прогресс обучения в процентах и число ваших побед.
+        </p>
     </div>
-    <!-- END OF SUPPORT PAGE -->
-    <script>generateNewGame();</script>
+    <button class="navButton" onclick="swapPage();">Продолжить</button>
+    <button class="navButton" onclick="exitPage();">Выход</button>
+</div>
+<!-- END OF SUPPORT PAGE -->
+<script>generateNewGame();</script>
 </body>
 </html>
