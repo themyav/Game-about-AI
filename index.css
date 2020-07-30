@@ -1,5 +1,4 @@
 body {
-    font-family: 'FuturaMediumC', sans-serif;
     margin: 16px 5%;
 }
 
@@ -125,7 +124,7 @@ tr:hover td.imgTd {
 
 .authors {
     font-size: 18px;
-    font-family: "FuturaLightC", sans-serif;
-    /*font-weight: 300;*/
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
     text-align: center;
 }
