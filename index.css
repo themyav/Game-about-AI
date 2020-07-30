@@ -19,39 +19,47 @@ body {
 }
 
 #hiddenInfo {
+    display: block;
     position: relative;
     left: 0;
     right: 0;
     margin: 0.5% auto auto auto;
-    height: 25px;
     width: 30%;
     min-width: 200px;
     border-radius: 10px;
-    /*border: 1px black solid;*/
     background: rgba(50,50,50,0.1);
+    height: 25px;
+    max-height: 30px;
+    transition: max-height 1s ease-in 0.5s, width ease-in 0.5s;
 }
 
 #infoText {
     display: none;
-    width: 100%;
-    height: 100px;
-    padding: 5px;
+    width: 90%;
+    left: 0;
+    right: 0;
+    margin: 1% auto auto auto;
 }
 
 #hiddenInfo.openMenu {
-    animation-duration: 1s;
+    /*animation-duration: 1.5s;
     animation-fill-mode: both;
     animation-direction: alternate;
     animation-timing-function: ease-in;
     animation-name: openAnimate;
+    */
+    height: auto;
+    max-height: 1200px;
+    width: 100%;
 }
 
 #hiddenInfo.closeMenu {
-    animation-duration: 1s;
+    /*animation-duration: 1.5s;
     animation-fill-mode: both;
     animation-direction: alternate;
     animation-timing-function: ease-out;
     animation-name: closeAnimate;
+    */
 }
 
 @keyframes openAnimate {
@@ -67,14 +75,15 @@ body {
 
     100% {
         width: 100%;
-        height: 125px;
+        max-height: 800px;
+        height: 80%;
     }
 }
 
 @keyframes closeAnimate {
     0% {
         width: 100%;
-        height: 125px;
+        height: 80%;
     }
 
     50% {
@@ -109,12 +118,21 @@ table {
     left: 0;
     right: 0;
     margin: 1% auto auto auto;
-    border-collapse: collapse;
+    border-spacing: 0 10px;
 }
 
-td {
+td.imgTd {
     padding: 5px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background: rgba(50,50,50,0.1);
+}
 
+td.textTd {
+    padding: 5px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background: rgba(50,50,50,0.1);
 }
 
 #gameList {
@@ -123,9 +141,6 @@ td {
 
 .gameLogo {
     padding: 5px 15px 0 5px;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    background: rgba(50,50,50,0.1);
 }
 
 .gameLogo IMG{
@@ -138,9 +153,7 @@ td {
 }
 
 .gameText {
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    background: rgba(50,50,50,0.1);
+
 }
 
 .gameDescription {

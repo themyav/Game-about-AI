@@ -6,7 +6,8 @@ function openInfo() {
         document.getElementById('hiddenInfo').classList.add('openMenu');
         document.getElementById('hiddenInfo').classList.remove('closeMenu');
         document.getElementById('textArrow').textContent = "▲";
-        setTimeout(showInfo, 1000);
+        showInfo();
+        /*setTimeout(showInfo, 1500);*/
     } else {
         showInfo();
         document.getElementById('hiddenInfo').classList.remove('openMenu');
