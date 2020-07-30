@@ -103,6 +103,45 @@ body {
     background: rgba(50,50,50,0.3);
 }
 
+table {
+    /*border: 1px solid black;*/
+    left: 0;
+    right: 0;
+    margin: 1% auto auto auto;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 5px;
+
+}
+
 #gameList {
 
+}
+
+.gameLogo {
+    padding: 5px 15px 0 5px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background: rgba(50,50,50,0.1);
+}
+
+.gameLogo IMG{
+    width: 100%;
+}
+
+.gameName {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.gameText {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background: rgba(50,50,50,0.1);
+}
+
+.gameDescription {
+    word-wrap: break-spaces;
 }
