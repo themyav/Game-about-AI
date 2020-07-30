@@ -24,6 +24,7 @@
     width: 40px;
     height: 24px;
     margin: 4px;
+    cursor: pointer;
 }
 
 .gamePlayground {
