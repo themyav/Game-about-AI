@@ -60,6 +60,7 @@ function AIRecalc() {
 }
 
 function endUserTurn() {
+    if (!userCanTurn) return;
     userCanTurn = false;
     if (curMatchesTakenByUser === 0) {
         alert("Вы должны взять хотя бы одну спичку");
