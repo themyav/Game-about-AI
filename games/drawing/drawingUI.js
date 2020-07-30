@@ -110,3 +110,6 @@ function writeInMatrix() {
         }
     }
 }
+
+function togglePause() {
+}
