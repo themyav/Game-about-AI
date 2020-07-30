@@ -87,8 +87,14 @@ td.textTd {
     background: rgba(50,50,50,0.1);
 }
 
-#gameList {
+tr:hover td.textTd {
+    background: rgba(50,50,50,0.3);
+    cursor: pointer;
+}
 
+tr:hover td.imgTd {
+    background: rgba(50,50,50,0.3);
+    cursor: pointer;
 }
 
 .gameLogo {
