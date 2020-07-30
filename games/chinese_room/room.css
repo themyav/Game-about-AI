@@ -7,10 +7,9 @@
 }
 
 #gameUI {
-    background: cornflowerblue;
     margin-left: auto;
     margin-right: auto;
-    border: 2px mintcream solid;
+    border: 2px #1c344c solid;
     width: 350px;
     min-height: 50%;
     margin-top: 150px;
@@ -19,15 +18,24 @@
     border-radius: 10px;
 }
 
-#output_got {
+input {
     width: 280px;
     margin-right: auto;
     margin-left: auto;
     display: block;
     letter-spacing: 0.3em;
+    font-family: 'Consolas', monospace;
+    font-weight: 500;
+    font-size: 24px;
+    background: rgba(255, 255, 255, 0);
+    border: #3c3c3c 2px solid;
+    border-radius: 8px;
+    height: 24px;
+    cursor: pointer;
 }
 
 #input_word {
+    font-family: 'Consolas', monospace;
     font-size: 24px;
     letter-spacing: 0.3em;
     text-align: left;
