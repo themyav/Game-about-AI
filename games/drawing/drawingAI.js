@@ -15,7 +15,7 @@ async function out_predict(drawing) {
 function updateUI(res) {
     for (let digit = 0; digit < 10; digit++) {
         let probaImg = document.getElementById(`probaImg${digit}`);
-        probaImg.style.width = `${res[digit] * 190 + 8}px`;
+        probaImg.style.width = `${res[digit] * 150 + 8}px`;
         let probaText = document.getElementById(`probaText${digit}`);
         probaText.innerText = `${Math.round(res[digit] * 100)}%`
     }

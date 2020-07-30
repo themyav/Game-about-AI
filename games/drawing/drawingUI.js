@@ -105,3 +105,6 @@ function writeInMatrix() {
         }
     }
 }
+
+function togglePause() {
+}
