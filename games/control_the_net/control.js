@@ -23,8 +23,7 @@ let gameBackground = new Image();
 let information = new Image();
 let node = new Image();
 let input_pic = new Image();
-let output_pic = new Image();
-
+let output_pic = new Image()
 //ссылки изображений
 gameBackground.src = "resources/bc.png";
 information.src = "resources/new_info.png";
