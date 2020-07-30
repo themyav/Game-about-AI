@@ -12,26 +12,13 @@
 <body>
     <!-- MAIN PAGE -->
     <div id="mainPage">
-        <!-- LeftSidebar-->
-        <div class="aside_left">
-            <div>
-                <div id="score_percent" style="font-size: 54px">0%</div>
-                <div style="height: 32px"></div>
-                <div id="score" style="font-size: 28px">0<br>верно из<br>0</div>
-            </div>
-            <div style="height: 100%">
-                <div style="position:absolute; bottom:24px;width: 100%">
-                    <section id="results"></section>
-                    <div style="height: 32px"></div>
-                    <button class="button" style="width: 80%; height:32px; font-size: 24px;" onclick="swapPage();">Об игре</button>
-                    <button class="button" style="width: 80%; height:32px; font-size: 24px;" onclick="exitPage();">Выход</button>
-                </div>
-            </div>
+        <div class="sidePanel navHolder">
+            <button class="navButton" onclick="swapPage();">Об игре</button>
+            <button class="navButton" onclick="exitPage();">Выход</button>
         </div>
-        <!-- /LeftSidebar-->
-        <div style="margin-left: 150px">
+        <div class="nonSidebar">
             <h1>Управляй нейросетью!</h1>
-            <canvas id = "canvas"></canvas>
+            <canvas id="canvas"></canvas>
         </div>
     </div>
     <!-- END OF MAIN PAGE -->
@@ -41,15 +28,17 @@
         <h1>Управляй нейросетью</h1>
         <div>
             <p>
-                Чтобы выбрать, в каком направлении пойдет информация из следующего нейрона - нажмай на стрелки. Чтобы увеличить вес нейрона на единицу, нужно кликнуть на него мышью.<br>
-                Нельзя пройти через нейрон, если его вес меньше веса данных. Ваша задача - довести информацию до вывода. Веса и расположения нейронов генерируются случайно.
+                Чтобы выбрать, в каком направлении пойдет информация из следующего нейрона - нажмай на стрелки. Чтобы
+                увеличить вес нейрона на единицу, нужно кликнуть на него мышью.<br>
+                Нельзя пройти через нейрон, если его вес меньше веса данных. Ваша задача - довести информацию до вывода.
+                Веса и расположения нейронов генерируются случайно.
             </p>
             <p>
                 Не шали тут.
             </p>
         </div>
-        <button class="button" onclick="swapPage();">Продолжить</button>
-        <button class="button" onclick="exitPage();">Выход</button>
+        <button class="navButton" onclick="swapPage();">Продолжить</button>
+        <button class="navButton" onclick="exitPage();">Выход</button>
     </div>
     <!-- END OF SUPPORT PAGE -->
 </body>
