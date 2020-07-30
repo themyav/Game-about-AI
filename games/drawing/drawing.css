@@ -9,6 +9,22 @@
 #canvasHolder canvas {
     display: block;
     background: white;
-    outline: 2px red solid;
+    outline: 2px #1c344c solid;
     cursor: crosshair;
+    margin-bottom: 16px;
+}
+
+.button {
+    width: 140px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#results img {
+    border: #1c344c 1px solid;
+    border-radius: 4px;
+    display: inline;
+    margin-top: 8px; margin-left: 8px; margin-right: 8px;
+
 }
