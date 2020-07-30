@@ -129,3 +129,53 @@ tr:hover td.imgTd {
     font-weight: 300;
     text-align: center;
 }
+
+.licences {
+    margin: 1% auto;
+    width: 140px;
+    left: 0;
+    right: 0;
+    background: rgba(50,50,50,0.1);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.licences:hover {
+    background: rgba(50,50,50,0.3);
+}
+
+.buttonList {
+    position: absolute;
+    top: 32px;
+    left: 5%;
+}
+
+#list {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#list th {
+    background: rgba(50,50,50,0.5);
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    width: 25%;
+}
+
+#list td {
+    border-bottom: 1px solid black;
+}
+
+#list tr.da {
+    background: rgba(50,50,50,0.1);
+}
+
+#list tr:hover {
+    background: rgba(50,50,50,0.3);
+}
+
+#list .link {
+    text-align: center;
+    cursor: pointer;
+    color: darkblue;
+}
