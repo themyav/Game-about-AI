@@ -1,0 +1,73 @@
+@font-face {
+    font-family: 'FuturaMediumC';
+    src:
+        local('Futura Medium'),
+        local('Futura-Medium');
+        url('./resources/FuturaMediumC.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FuturaLightC';
+    src:
+        local('Futura Light'),
+        local('Futura-Light');
+        url('./resources/FuturaLightC.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FuturaDemiC';
+    src:
+        local('Futura Demi'),
+        local('Futura-Demi');
+        url('./resources/FuturaDemiC.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FuturaBookC';
+    src:
+        local('Futura Book'),
+        local('Futura-Book');
+        url('./resources/FuturaBookC.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src:
+        /*local('Roboto Medium'),*/
+        /*local('Roboto-Medium');*/
+        url('./resources/Roboto-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src:
+        /*local('Roboto Light'),*/
+        /*local('Roboto-Light');*/
+        url('./resources/Roboto-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src:
+        /*local('Roboto'),*/
+        /*local('Roboto-Regular');*/
+        url('./resources/Roboto-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
