@@ -28,10 +28,19 @@ body {
     min-width: 200px;
     border-radius: 10px;
     background: rgba(50,50,50,0.1);
-    height: 25px;
+    height: auto;
     max-height: 25px;
     transition: max-height 1s ease-in 0.5s, width 0.5s ease-in;
     overflow: hidden;
+}
+
+#hiddenInfo.openMenu {
+    max-height: 1600px;
+    width: 100%;
+}
+
+#hiddenInfo.swap {
+    transition: max-height 1s ease-out, width 0.5s ease-out 1s;
 }
 
 #infoText {
@@ -41,12 +50,6 @@ body {
     right: 0;
     padding: 1%;
     margin: auto;
-}
-
-#hiddenInfo.openMenu {
-    height: auto;
-    max-height: 1500px;
-    width: 100%;
 }
 
 #arrow {
