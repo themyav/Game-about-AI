@@ -90,7 +90,12 @@ function clearCanvas() {
             matrix[i][q] = 0;
         }
     }
-    //updateUI([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    for (let i = 0; i <= 9; i++) {
+        let idImg = 'probaImg' + i;
+        let idText = 'probaText' + i;
+        document.getElementById(idImg).style.width = '0';
+        document.getElementById(idText).innerText = '0%';
+    }
 }
 
 function writeInMatrix() {
