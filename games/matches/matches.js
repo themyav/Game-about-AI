@@ -136,5 +136,4 @@ function updateUI() {
     document.getElementById("score").innerHTML = userWins + " побед из " + games;
 }
 
-function togglePause() {
-}
+function togglePause() {}

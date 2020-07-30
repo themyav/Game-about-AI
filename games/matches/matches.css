@@ -1,11 +1,3 @@
-#mainPage {
-    display: block;
-}
-
-#supportPage {
-    display: none;
-}
-
 .match {
     border-radius: 8px;
     width: 24px;

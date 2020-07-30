@@ -22,7 +22,7 @@ body {
     position: relative;
     left: 0;
     right: 0;
-    margin: 0.5% auto auto auto;
+    margin: 1% auto;
     width: 30%;
     min-width: 200px;
     border-radius: 10px;
@@ -115,7 +115,8 @@ tr:hover td.imgTd {
 }
 
 .gameText {
-
+    width: auto;
+    max-width: 450px;
 }
 
 .gameDescription {

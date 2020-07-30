@@ -16,92 +16,90 @@
     <script src="../../shared.js"></script>
 </head>
 <body onload="runScript();">
-<!-- MAIN PAGE -->
-<div id="mainPage">
+    <!-- MAIN PAGE -->
     <div style="margin: auto; width: 280px">
         <h1>Рисовальня</h1>
         <div id="canvasHolder">
             <canvas id="canvas" width="280" height="280"></canvas>
             <button class="button" onclick="swapPage();">Об игре</button>
             <button class="button" onclick="clearCanvas();clearCanvas();">Очистить</button> <!-- осторожно рядом костыль -->
-            <button class="button" onclick="exitPage();">Выход</button>
+            <button class="button" onclick="document.location='../../index.html';">Выход</button>
         </div>
         <div id="results">
             <div style="height: 24px; padding-left: 8px" id="probaDiv0"> 0<img src="resources/nothingToSeeHere.png" id="probaImg0" width="8px"
-                                            height="16px">
+                                            height="16px" alt="Шкала">
                 <div id="probaText0" style="display: inline">0%</div>
             </div>
             <div style="height: 24px; padding-left: 8px" id="probaDiv1"> 1<img src="resources/nothingToSeeHere.png" id="probaImg1" width="8px"
-                                            height="16px">
+                                            height="16px" alt="Шкала">
                 <div id="probaText1" style="display: inline">0%</div>
             </div>
             <div style="height: 24px; padding-left: 8px" id="probaDiv2"> 2<img src="resources/nothingToSeeHere.png" id="probaImg2" width="8px"
-                                            height="16px">
+                                            height="16px" alt="Шкала">
                 <div id="probaText2" style="display: inline">0%</div>
             </div>
             <div style="height: 24px; padding-left: 8px" id="probaDiv3"> 3<img src="resources/nothingToSeeHere.png" id="probaImg3" width="8px"
-                                            height="16px">
+                                            height="16px" alt="Шкала">
                 <div id="probaText3" style="display: inline">0%</div>
             </div>
             <div style="height: 24px; padding-left: 8px" id="probaDiv4"> 4<img src="resources/nothingToSeeHere.png" id="probaImg4" width="8px"
-                                            height="16px">
+                                            height="16px" alt="Шкала">
                 <div id="probaText4" style="display: inline">0%</div>
             </div>
             <div style="height: 24px; padding-left: 8px" id="probaDiv5"> 5<img src="resources/nothingToSeeHere.png" id="probaImg5" width="8px"
-                                            height="16px">
+                                            height="16px" alt="Шкала">
                 <div id="probaText5" style="display: inline">0%</div>
             </div>
             <div style="height: 24px; padding-left: 8px" id="probaDiv6"> 6<img src="resources/nothingToSeeHere.png" id="probaImg6" width="8px"
-                                            height="16px">
+                                            height="16px" alt="Шкала">
                 <div id="probaText6" style="display: inline">0%</div>
             </div>
             <div style="height: 24px; padding-left: 8px" id="probaDiv7"> 7<img src="resources/nothingToSeeHere.png" id="probaImg7" width="8px"
-                                            height="16px">
+                                            height="16px" alt="Шкала">
                 <div id="probaText7" style="display: inline">0%</div>
             </div>
             <div style="height: 24px; padding-left: 8px" id="probaDiv8"> 8<img src="resources/nothingToSeeHere.png" id="probaImg8" width="8px"
-                                            height="16px">
+                                            height="16px" alt="Шкала">
                 <div id="probaText8" style="display: inline">0%</div>
             </div>
             <div style="height: 24px; padding-left: 8px" id="probaDiv9"> 9<img src="resources/nothingToSeeHere.png" id="probaImg9" width="8px"
-                                            height="16px">
+                                            height="16px" alt="Шкала">
                 <div id="probaText9" style="display: inline">0%</div>
             </div>
         </div>
     </div>
-</div>
-<!-- END OF MAIN PAGE -->
+    <!-- END OF MAIN PAGE -->
 
-<!-- SUPPORT PAGE -->
-<div id="supportPage">
-    <h1>Рисование</h1>
-    <div>
-        <p>
-            Искуственный интелекст часто используют для распознавания объектов на изображении. И у него получается
-            относительно неплохо.
-        </p>
-        <p>
-            Нарисуйте что-нибудь на холсте. Сразу после того, как вы закончили рисовать, мы считаем ваш рисунок и
-            отдадим на анализ специально обученной нейросети,
-            которая в ответ выдаст вероятность того, что на рисунке находится каждая из цифр.
-        </p>
-        <p>
-            Конечно же, не обязательно рисовать именно цифры. Творите и наблюдайте, как нейросеть постепенно входит в
-            замешательство, пока вы рисуете человечка.
-        </p>
-        <p>
-            Однако, если конкретно эта сеть не всегда справляется с идентификацией объектов, это не значит, что так
-            делают они все. Тут результат сильно зависит от того, как её обучить.
-            Нужно уметь подбирать множество параметров, иметь огромную базу обучающих данных (для крупных сетей размеры
-            исчисляюся миллионами образцов), мощное оборудование и немало времени.
-        </p>
-        <p>
-            Нейросеть построена с помощью библиотек Tensorflow, обучалась на 45 000 изображений из датасета MNIST.
-        </p>
+    <!-- SUPPORT PAGE -->
+    <div id="supportBG" onclick="swapPage();">
+        <div id="supportPage">
+            <h1>Рисование</h1>
+            <div>
+                <p>
+                    Искуственный интелекст часто используют для распознавания объектов на изображении. И у него получается
+                    относительно неплохо.
+                </p>
+                <p>
+                    Нарисуйте что-нибудь на холсте. Сразу после того, как вы закончили рисовать, мы считаем ваш рисунок и
+                    отдадим на анализ специально обученной нейросети,
+                    которая в ответ выдаст вероятность того, что на рисунке находится каждая из цифр.
+                </p>
+                <p>
+                    Конечно же, не обязательно рисовать именно цифры. Творите и наблюдайте, как нейросеть постепенно входит в
+                    замешательство, пока вы рисуете человечка.
+                </p>
+                <p>
+                    Однако, если конкретно эта сеть не всегда справляется с идентификацией объектов, это не значит, что так
+                    делают они все. Тут результат сильно зависит от того, как её обучить.
+                    Нужно уметь подбирать множество параметров, иметь огромную базу обучающих данных (для крупных сетей размеры
+                    исчисляюся миллионами образцов), мощное оборудование и немало времени.
+                </p>
+                <p>
+                    Нейросеть построена с помощью библиотек Tensorflow, обучалась на 45 000 изображений из датасета MNIST.
+                </p>
+            </div>
+        </div>
     </div>
-    <button class="navButton" onclick="swapPage();">Продолжить</button>
-    <button class="navButton" onclick="exitPage();">Выход</button>
-</div>
-<!-- ENF OF SUPPORT PAGE -->
+    <!-- ENF OF SUPPORT PAGE -->
 </body>
 </html>

@@ -113,5 +113,4 @@ function writeInMatrix() {
     }
 }
 
-function togglePause() {
-}
+function togglePause() {}
