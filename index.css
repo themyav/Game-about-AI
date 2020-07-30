@@ -122,3 +122,10 @@ tr:hover td.imgTd {
 .gameDescription {
     word-wrap: break-spaces;
 }
+
+.authors {
+    font-size: 18px;
+    font-family: "FuturaLightC", sans-serif;
+    /*font-weight: 300;*/
+    text-align: center;
+}
