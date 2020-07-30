@@ -16,8 +16,8 @@ function runScript() {
     canvas.addEventListener('mousemove', mouseMove);
     canvas.addEventListener('mousedown', mouseDown);
     canvas.addEventListener('mouseout', mouseOut);
-    //canvas.addEventListener('mouseup', mouseUp);
-    document.addEventListener('mouseup', mouseUp);
+    canvas.addEventListener('mouseup', mouseUp);
+    //document.addEventListener('mouseup', mouseUp);
     ctx.lineWidth = 10;                                       /* РАЗМЕР КИСТИ */
     ctx.lineCap = "round";
     drawing = false;
@@ -95,7 +95,9 @@ function clearCanvas() {
         let idText = 'probaText' + i;
         document.getElementById(idImg).style.width = '8px';
         document.getElementById(idText).innerText = '0%';
+        document.getElementById(`probaDiv${i}`).style.border = 'solid rgba(0, 0, 0, 0) 1px';
     }
+    writeInMatrix();
 }
 
 function writeInMatrix() {

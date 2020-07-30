@@ -18,8 +18,20 @@ function updateUI(res) {
         probaImg.style.width = `${res[digit] * 150 + 8}px`;
         let probaText = document.getElementById(`probaText${digit}`);
         probaText.innerText = `${Math.round(res[digit] * 100)}%`
+        let probaDiv = document.getElementById(`probaDiv${digit}`);
+        probaDiv.style.border = 'solid rgba(0, 0, 0, 0) 1px';
+        probaDiv.style.borderRadius = '8px';
     }
+
+    let highest = 0;
+    for (let digit = 1; digit < 10; digit++) {
+        if (res[digit] > res[highest]) highest = digit;
+    }
+    let probaDiv = document.getElementById(`probaDiv${highest}`);
+        probaDiv.style.borderColor = '#1c344c';
+
 }
+
 function resizeArray(inputArray) {
     const INPUT_ARRAY_SIZE = 280;
     const OUTPUT_ARRAY_SIZE = 28;
