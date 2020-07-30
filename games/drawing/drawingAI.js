@@ -12,20 +12,13 @@ async function out_predict(drawing) {
     updateUI(result[0]);
 }
 
-
 function updateUI(res) {
-    let resElem = document.getElementById('results');
-    while (resElem.childElementCount > 0) {
-        resElem.removeChild(resElem.firstChild);
+    for (let digit = 0; digit < 10; digit++) {
+        let probaImg = document.getElementById(`probaImg${digit}`);
+        probaImg.style.width = `${res[digit] * 190 + 8}px`;
+        let probaText = document.getElementById(`probaText${digit}`);
+        probaText.innerText = `${Math.round(res[digit] * 100)}%`
     }
-    let html = "";
-    let proba;
-    let digit = 0;
-    for (proba of res) {
-        html = html.concat(`<div style="height: 24px">${digit}<img src="resources/nothingToSeeHere.png" width="${Math.round(proba * 206) + 8}px" height="16px">${Math.round(proba * 100)}%</div>`);
-        digit += 1;
-    }
-    resElem.innerHTML = html;
 }
 function resizeArray(inputArray) {
     const INPUT_ARRAY_SIZE = 280;

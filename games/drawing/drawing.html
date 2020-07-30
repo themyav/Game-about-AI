@@ -26,7 +26,48 @@
             <button class="button" onclick="clearCanvas();">Очистить</button>
             <button class="button" onclick="exitPage();">Выход</button>
         </div>
-        <div id="results"></div>
+        <div id="results">
+            <div style="height: 24px">0<img src="resources/nothingToSeeHere.png" id="probaImg0" width="8px"
+                                            height="16px">
+                <div id="probaText0" style="display: inline">0%</div>
+            </div>
+            <div style="height: 24px">1<img src="resources/nothingToSeeHere.png" id="probaImg1" width="8px"
+                                            height="16px">
+                <div id="probaText1" style="display: inline">0%</div>
+            </div>
+            <div style="height: 24px">2<img src="resources/nothingToSeeHere.png" id="probaImg2" width="8px"
+                                            height="16px">
+                <div id="probaText2" style="display: inline">0%</div>
+            </div>
+            <div style="height: 24px">3<img src="resources/nothingToSeeHere.png" id="probaImg3" width="8px"
+                                            height="16px">
+                <div id="probaText3" style="display: inline">0%</div>
+            </div>
+            <div style="height: 24px">4<img src="resources/nothingToSeeHere.png" id="probaImg4" width="8px"
+                                            height="16px">
+                <div id="probaText4" style="display: inline">0%</div>
+            </div>
+            <div style="height: 24px">5<img src="resources/nothingToSeeHere.png" id="probaImg5" width="8px"
+                                            height="16px">
+                <div id="probaText5" style="display: inline">0%</div>
+            </div>
+            <div style="height: 24px">6<img src="resources/nothingToSeeHere.png" id="probaImg6" width="8px"
+                                            height="16px">
+                <div id="probaText6" style="display: inline">0%</div>
+            </div>
+            <div style="height: 24px">7<img src="resources/nothingToSeeHere.png" id="probaImg7" width="8px"
+                                            height="16px">
+                <div id="probaText7" style="display: inline">0%</div>
+            </div>
+            <div style="height: 24px">8<img src="resources/nothingToSeeHere.png" id="probaImg8" width="8px"
+                                            height="16px">
+                <div id="probaText8" style="display: inline">0%</div>
+            </div>
+            <div style="height: 24px">9<img src="resources/nothingToSeeHere.png" id="probaImg9" width="8px"
+                                            height="16px">
+                <div id="probaText9" style="display: inline">0%</div>
+            </div>
+        </div>
     </div>
 </div>
 <!-- END OF MAIN PAGE -->
@@ -36,18 +77,23 @@
     <h1>Рисование</h1>
     <div>
         <p>
-            Искуственный интелекст часто используют для распознавания объектов на изображении. И у него получается относительно неплохо.
+            Искуственный интелекст часто используют для распознавания объектов на изображении. И у него получается
+            относительно неплохо.
         </p>
         <p>
-            Нарисуйте что-нибудь на холсте. Сразу после того, как вы закончили рисовать, мы считаем ваш рисунок и отдадим на анализ специально обученной нейросети,
+            Нарисуйте что-нибудь на холсте. Сразу после того, как вы закончили рисовать, мы считаем ваш рисунок и
+            отдадим на анализ специально обученной нейросети,
             которая в ответ выдаст вероятность того, что на рисунке находится каждая из цифр.
         </p>
         <p>
-            Конечно же, не обязательно рисовать именно цифры. Творите и наблюдайте, как нейросеть постепенно входит в замешательство, пока вы рисуете человечка.
+            Конечно же, не обязательно рисовать именно цифры. Творите и наблюдайте, как нейросеть постепенно входит в
+            замешательство, пока вы рисуете человечка.
         </p>
         <p>
-            Однако, если конкретно эта сеть не всегда справляется с идентификацией объектов, это не значит, что так делают они все. Тут результат сильно зависит от того, как её обучить.
-            Нужно уметь подбирать множество параметров, иметь огромную базу обучающих данных (для крупных сетей размеры исчисляюся миллионами образцов), мощное оборудование и немало времени.
+            Однако, если конкретно эта сеть не всегда справляется с идентификацией объектов, это не значит, что так
+            делают они все. Тут результат сильно зависит от того, как её обучить.
+            Нужно уметь подбирать множество параметров, иметь огромную базу обучающих данных (для крупных сетей размеры
+            исчисляюся миллионами образцов), мощное оборудование и немало времени.
         </p>
         <p>
             Нейросеть построена с помощью библиотек Tensorflow, обучалась на 45 000 изображений из датасета MNIST.
@@ -57,5 +103,6 @@
     <button class="navButton" onclick="exitPage();">Выход</button>
 </div>
 <!-- ENF OF SUPPORT PAGE -->
+<script>out_predict();</script>
 </body>
 </html>
