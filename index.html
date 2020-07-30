@@ -2,18 +2,19 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Игра про ИИ</title>
+    <title>Игры про ИИ</title>
     <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="stylesheet" href="index.css">
     <script src="index.js"></script>
 </head>
 <body>
-    <div id="mainPage">
-        <h1 class="centerText">Время познакомиться с ИИ поближе!</h1>
-        <p class="centerText" id="welcomeText">Будущее ближе, чем нам кажется. Именно поэтому пора шагнуть к новым знаниям и разобраться с тем, что такое Искусственный Интеллект. Начнём?</p>
-        <div id="hiddenInfo" class="centerText swap">
-            <div id="infoText" class="centerText">
+<div id="mainPage">
+    <h1 class="centerText">Время познакомиться с ИИ поближе!</h1>
+    <p class="centerText" id="welcomeText">Будущее ближе, чем нам кажется. Именно поэтому пора шагнуть к новым знаниям и
+        разобраться с тем, что такое Искусственный Интеллект. Начнём?</p>
+    <div id="hiddenInfo" class="centerText swap">
+        <div id="infoText" class="centerText">
                 <span>
                     <p>
                         В последнее время довольно часто можно услышать, что искусственный интеллект научили выполнят очередную
@@ -59,75 +60,82 @@
                         очень много времени.
                     </p>
                 </span>
-            </div>
-            <div id="arrow" onclick="openInfo();"><span id="textArrow">Узнать больше ▼</span></div>
         </div>
-        <div id="gameList">
-            <table>
-                <tr onclick="document.location='games/chinese_room/room.html'">
-                    <td class="imgTd">
-                        <div class="gameLogo">
-                            <img src="games/chinese_room/resources/logo.png">
+        <div id="arrow" onclick="openInfo();"><span id="textArrow">Узнать больше ▼</span></div>
+    </div>
+    <div id="gameList">
+        <table>
+            <tr onclick="document.location='games/chinese_room/room.html'">
+                <td class="imgTd">
+                    <div class="gameLogo">
+                        <img src="games/chinese_room/resources/logo.png">
+                    </div>
+                </td>
+                <td class="textTd">
+                    <div class="gameText">
+                        <div class="gameName">
+                            Китайская комната
                         </div>
-                    </td>
-                    <td class="textTd">
-                        <div id="gameText">
-                            <div class="gameName">
-                                Китайская комната
-                            </div>
-                            <div class="gameDescription">
-                                До сих пор не знаю правил
-                            </div>
+                        <div class="gameDescription">
+                            Это как переводчик, только смысл слов вам совершенно неясен. Что на одном языке, что на
+                            другом.
                         </div>
-                    </td>
-                </tr>
-                <tr onclick="document.location='games/control_the_net/control.html'">
-                    <td class="imgTd">
-                        <div class="gameLogo">
-                            <img src="games/control_the_net/resources/logo.png">
-                        </div>
-                    </td>
-                    <td class="textTd">
+                    </div>
+                </td>
+            </tr>
+            <tr onclick="document.location='games/control_the_net/control.html'">
+                <td class="imgTd">
+                    <div class="gameLogo">
+                        <img src="games/control_the_net/resources/logo.png">
+                    </div>
+                </td>
+                <td class="textTd">
+                    <div class="gameText">
                         <div class="gameName">
                             Управляй ИИ
                         </div>
                         <div class="gameText">
                             Bip. Bop.
                         </div>
-                    </td>
-                </tr>
-                <tr onclick="document.location='games/matches/matches.html'">
-                    <td class="imgTd">
-                        <div class="gameLogo">
-                            <img src="games/matches/resources/logo.png">
-                        </div>
-                    </td>
-                    <td class="textTd">
+                    </div>
+                </td>
+            </tr>
+            <tr onclick="document.location='games/matches/matches.html'">
+                <td class="imgTd">
+                    <div class="gameLogo">
+                        <img src="games/matches/resources/logo.png">
+                    </div>
+                </td>
+                <td class="textTd">
+                    <div class="gameText">
                         <div class="gameName">
                             Обучи ИИ
                         </div>
                         <div class="gameText">
-                            Ты себя видел? Чему ты меня обучить то можешь?
+                            Игра со спичками и ИИ. Либо вы его обучите, либо не судьба.
                         </div>
-                    </td>
-                </tr>
-                <tr onclick="document.location='games/drawing/drawing.html'">
-                    <td class="imgTd">
-                        <div class="gameLogo">
-                            <img src="games/drawing/resources/logo.png">
-                        </div>
-                    </td>
-                    <td class="textTd">
+                    </div>
+                </td>
+            </tr>
+            <tr onclick="document.location='games/drawing/drawing.html'">
+                <td class="imgTd">
+                    <div class="gameLogo">
+                        <img src="games/drawing/resources/logo.png">
+                    </div>
+                </td>
+                <td class="textTd">
+                    <div class="gameText">
                         <div class="gameName">
                             Рисовальня
                         </div>
                         <div class="gameText">
-                            Нужно сделать анимации
+                            Обычно, ИИ, как и любая другая компьютерная программа, силён в математике. Но не в этот раз.
                         </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
+</div>
 </body>
 </html>
