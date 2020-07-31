@@ -17,7 +17,12 @@ function runScript() {
     canvas.addEventListener('mousedown', mouseDown);
     canvas.addEventListener('mouseout', mouseOut);
     canvas.addEventListener('mouseup', mouseUp);
-    //document.addEventListener('mouseup', mouseUp);
+
+    canvas.addEventListener('touchmove', mouseMove);
+    canvas.addEventListener('touchstart', mouseDown);
+    canvas.addEventListener('touchcancel', mouseOut);
+    canvas.addEventListener('touchend', mouseUp);
+
     ctx.lineWidth = 10;                                       /* РАЗМЕР КИСТИ */
     ctx.lineCap = "round";
     drawing = false;
@@ -53,18 +58,21 @@ function mouseDown(ev) {
 
     oldX = ev.clientX - rect.left;
     oldY = ev.clientY - rect.top;
+    console.log('down');
 }
 
 function mouseMove(ev) {
     if(drawing) {
         doDrawEvent(ev);
     }
+    console.log('move');
 }
 
 function mouseOut(ev) {
     if(drawing) {
         doDrawEvent(ev);
     }
+    console.log('out');
     /*
     drawing = false;
     console.log('Здесь могло быть ваше предсказание');
@@ -76,7 +84,7 @@ function mouseUp(ev) {
     drawing = false;
     writeInMatrix();
     out_predict(matrix);
-    /* ТУТ ВЫЗОВ ФУНКЦИИ ПРИ ОТПУСКАНИИ МЫШИ*/
+    console.log('up');
 }
 
 function clearCanvas() {
