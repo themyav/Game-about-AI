@@ -16,6 +16,8 @@ let dy = 1;
 const step = 1; //длина шага
 let prev_dx = dx, prev_dy = dy;
 let info_start_weight = 3 + getRandom(60);
+let startingX = 20.5;
+let startingY = 50;
 
 
 //изображения
@@ -23,7 +25,8 @@ let gameBackground = new Image();
 let information = new Image();
 let node = new Image();
 let input_pic = new Image();
-let output_pic = new Image()
+let output_pic = new Image();
+
 //ссылки изображений
 gameBackground.src = "resources/bc.png";
 information.src = "resources/new_info.png";
@@ -113,7 +116,7 @@ class Information{
 window.onload = function () {
     canvas = document.getElementById("canvas");
     context = canvas.getContext("2d");
-    drawBackground(20.5, 50); //тут задается начальное положение "информации"
+    drawBackground(); //тут задается начальное положение "информации"
     window.onkeydown = processKey;
     canvas.addEventListener("mousedown", changeWeight);
 };
@@ -148,7 +151,7 @@ function updateCanvas() {
 
 }
 
-function drawBackground(startingX, startingY) {
+function drawBackground() {
 
     dx = 0;
     dy = 0;
@@ -220,10 +223,10 @@ function processKey(e){
         dx = 0;
         dy = 0;
 
-        if(e.keyCode === 38) dy -= step; //up
-        else if(e.keyCode === 40) dy += step; //down
-        else if(e.keyCode === 37) dx -= step; //left
-        else if(e.keyCode === 39) dx += step; // right
+        if(e.key === "ArrowUp") dy -= step; //up
+        else if(e.key === "ArrowDown") dy += step; //down
+        else if(e.key === "ArrowLeft") dx -= step; //left
+        else if(e.key === "ArrowRight") dx += step; // right
         else {
             dx = prev_dx;
             dy = prev_dy;
@@ -239,13 +242,15 @@ function checkCollision(cx, cy) {
         dx = 0;
         dy = 0;
         alert('Ошибка! Выход за край игрового поля!');
+        restart();
         return true;
     }
 
     if(cx === 1050 && cy === 850){
         dx = 0;
         dy = 0;
-        alert('Победа');
+        alert('Победа! Играем еще раз?');
+        restart();
         return true;
     }
 
@@ -275,9 +280,21 @@ function checkCollision(cx, cy) {
 }
 
 function gameFailed() {
+    alert('Проигрыш. Начать игру сначала?');
+    restart();
+
+}
+
+function restart() {
+    x = startingX;
+    y = startingY;
     dx = 0;
-    dy = 0;
-    alert('Проигрыш');
+    dy = 1;
+    prev_dx = dx;
+    prev_dy = dy;
+    cur_edge = -1;
+    cur_node = -1;
+    info_start_weight = 3 + getRandom(60);
 
 }
 
