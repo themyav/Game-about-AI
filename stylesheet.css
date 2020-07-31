@@ -110,7 +110,7 @@ button:hover {
 }
 
 #supportText {
-    height: calc(100% - 2% - 48px);
+    height: calc(100% - 4% - 48px);
     overflow-x: auto;
     border-radius: 10px;
 }
@@ -126,4 +126,8 @@ button:hover {
     #supportTitle {display: none}
     #supportText {height: calc(98% - 28px)}
     #reserveText {display: block}
+    #supportPage {
+        width: 90%;
+        left: 5%;
+    }
 }
