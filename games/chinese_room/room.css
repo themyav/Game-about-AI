@@ -16,7 +16,7 @@ input {
     margin-left: auto;
     display: block;
     letter-spacing: 0.3em;
-    font-family: 'Consolas', monospace;
+    font-family: monospace;
     font-weight: 500;
     font-size: 24px;
     background: rgba(255, 255, 255, 0);
@@ -27,7 +27,7 @@ input {
 }
 
 #input_word {
-    font-family: 'Consolas', monospace;
+    font-family: monospace;
     font-size: 24px;
     letter-spacing: 0.3em;
     text-align: left;
