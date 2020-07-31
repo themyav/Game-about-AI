@@ -112,4 +112,18 @@ button:hover {
 #supportText {
     height: calc(100% - 2% - 48px);
     overflow-x: auto;
+    border-radius: 10px;
+}
+
+#reserveText {
+    display: none;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 500;
+}
+
+@media (max-width: 800px) {
+    #supportTitle {display: none}
+    #supportText {height: calc(98% - 28px)}
+    #reserveText {display: block}
 }
