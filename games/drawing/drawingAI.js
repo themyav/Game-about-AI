@@ -5,6 +5,7 @@ let model;
 getModel();
 async function getModel() {
     model = await tf.loadLayersModel('./model/model.json');
+    document.getElementById('nnReady').style.display = 'none';
 }
 
 async function out_predict(drawing) {
