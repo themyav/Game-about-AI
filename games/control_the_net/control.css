@@ -8,3 +8,11 @@
     margin-left: 30%;
     font-size: 35px;
 }
+
+.term {
+    font-weight: 500;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    padding-left: 16px;
+    margin: 4px 0 4px 0;
+}
