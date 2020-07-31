@@ -16,3 +16,11 @@
     padding-left: 16px;
     margin: 4px 0 4px 0;
 }
+
+DIV.reload{
+    width: 170px;
+    margin: 16px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
