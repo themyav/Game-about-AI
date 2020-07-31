@@ -27,12 +27,6 @@ let node = new Image();
 let input_pic = new Image();
 let output_pic = new Image();
 
-//ссылки изображений
-information.src = "resources/new_info.png";
-node.src = "resources/node.png";
-input_pic.src = "resources/input.png";
-output_pic.src = "resources/output.png";
-
 //массивы
 let nodes = [];
 let edges = [];
@@ -106,7 +100,7 @@ class Information{
     }
     draw_Information(){
         context.drawImage(information, this.inf_x, this.inf_y);
-        context.font = "20px Open Sans";
+        context.font = "23px Open Sans";
         context.fillText(this.weight, this.inf_x + 15, this.inf_y + 40);
     }
 }
@@ -116,6 +110,10 @@ window.onload = function () {
     canvas = document.getElementById("canvas");
     context = canvas.getContext("2d");
     gameBackground = document.getElementById("test");
+    information = document.getElementById("info");
+    node = document.getElementById("node");
+    input_pic = document.getElementById("input");
+    output_pic = document.getElementById("output");
     drawBackground(); //тут задается начальное положение "информации"
     window.onkeydown = processKey;
     canvas.addEventListener("mousedown", changeWeight);
@@ -129,7 +127,6 @@ function updateCanvas() {
     drawLine([nodes[nodes.length - 1].x + node.width / 2, nodes[nodes.length - 1].y + node.height / 2, nodes[nodes.length - 1].x + node.width / 2, 850, 1050, 850], 5, true, false);
 
     context.font = "25px Open Sans";
-    context.fillText('Нажми на любую клавишу, чтобы начать игру', 610, 25);
 
     context.drawImage(input_pic, 20, 20);
     context.drawImage(output_pic, 1040, 820);

@@ -4,3 +4,7 @@
 .gamePics{
     display: none;
 }
+#instruction{
+    margin-left: 30%;
+    font-size: 35px;
+}
