@@ -27,13 +27,6 @@ let node = new Image();
 let input_pic = new Image();
 let output_pic = new Image();
 
-//ссылки изображений
-gameBackground.src = "resources/bc.png";
-information.src = "resources/new_info.png";
-node.src = "resources/node.png";
-input_pic.src = "resources/input.png";
-output_pic.src = "resources/output.png";
-
 //массивы
 let nodes = [];
 let edges = [];
@@ -107,7 +100,7 @@ class Information{
     }
     draw_Information(){
         context.drawImage(information, this.inf_x, this.inf_y);
-        context.font = "20px Open Sans";
+        context.font = "23px Open Sans";
         context.fillText(this.weight, this.inf_x + 15, this.inf_y + 40);
     }
 }
@@ -116,6 +109,11 @@ class Information{
 window.onload = function () {
     canvas = document.getElementById("canvas");
     context = canvas.getContext("2d");
+    gameBackground = document.getElementById("test");
+    information = document.getElementById("info");
+    node = document.getElementById("node");
+    input_pic = document.getElementById("input");
+    output_pic = document.getElementById("output");
     drawBackground(); //тут задается начальное положение "информации"
     window.onkeydown = processKey;
     canvas.addEventListener("mousedown", changeWeight);
@@ -123,13 +121,12 @@ window.onload = function () {
 
 function updateCanvas() {
     context.clearRect(0, 0, canvas.width, canvas.height);
-    context.drawImage(gameBackground, 0, 0);
+    context.drawImage(gameBackground, 0, 0, canvas.width, canvas.height);
 
-   drawLine([20.5 + information.width / 2, 50, 20.5 + information.width / 2, nodes[0].y + node.height / 2, nodes[0].x + node.width / 2, nodes[0].y + node.height / 2], 5, true, false);
+    drawLine([20.5 + information.width / 2, 50, 20.5 + information.width / 2, nodes[0].y + node.height / 2, nodes[0].x + node.width / 2, nodes[0].y + node.height / 2], 5, true, false);
     drawLine([nodes[nodes.length - 1].x + node.width / 2, nodes[nodes.length - 1].y + node.height / 2, nodes[nodes.length - 1].x + node.width / 2, 850, 1050, 850], 5, true, false);
 
     context.font = "25px Open Sans";
-    context.fillText('Нажми на любую клавишу, чтобы начать движение!', 590, 25);
 
     context.drawImage(input_pic, 20, 20);
     context.drawImage(output_pic, 1040, 820);
@@ -155,8 +152,8 @@ function drawBackground() {
 
     dx = 0;
     dy = 0;
-    canvas.width = gameBackground.width;
-    canvas.height = gameBackground.height;
+    canvas.width = 1200;
+    canvas.height = 900;
 
     x = startingX;
     y = startingY;
@@ -206,31 +203,31 @@ function drawBackground() {
             }
             else {
                 nodes[i].edges.push({"right" : j, "dir_x" : dir_x, "dir_y" : dir_y , "turn_x" : -1, "turn_y" : -1, "turn_dir" : -2});
-                console.log('nodes ', i, j, sx, sy, fx, fy);
             } //если ребро прямое, то координаты поворота отрицательны
 
         }
     }
+    console.log(canvas.width, canvas.height);
     //из последней вершины можно повернуть к выходу
     nodes[nodes.length - 1].edges.push({"right" : nodes[nodes.length - 1], "dir_x" : 0, "dir_y" : 1,
-             "turn_x" : nodes[nodes.length - 1].x + node.width / 2, "turn_y" : 850, "turn_dir" : 1});
+        "turn_x" : nodes[nodes.length - 1].x + node.width / 2, "turn_y" : 850, "turn_dir" : 1});
 
     updateCanvas();
 }
 
 function processKey(e){
 
-        dx = 0;
-        dy = 0;
+    dx = 0;
+    dy = 0;
 
-        if(e.key === "ArrowUp") dy -= step; //up
-        else if(e.key === "ArrowDown") dy += step; //down
-        else if(e.key === "ArrowLeft") dx -= step; //left
-        else if(e.key === "ArrowRight") dx += step; // right
-        else {
-            dx = prev_dx;
-            dy = prev_dy;
-        }
+    if(e.key === "ArrowUp") dy -= step; //up
+    else if(e.key === "ArrowDown") dy += step; //down
+    else if(e.key === "ArrowLeft") dx -= step; //left
+    else if(e.key === "ArrowRight") dx += step; // right
+    else {
+        dx = prev_dx;
+        dy = prev_dy;
+    }
 }
 
 function checkCollision(cx, cy) {

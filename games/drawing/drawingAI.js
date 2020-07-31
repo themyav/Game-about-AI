@@ -12,21 +12,26 @@ async function out_predict(drawing) {
     updateUI(result[0]);
 }
 
-
 function updateUI(res) {
-    let resElem = document.getElementById('results');
-    while (resElem.childElementCount > 0) {
-        resElem.removeChild(resElem.firstChild);
+    for (let digit = 0; digit < 10; digit++) {
+        let probaImg = document.getElementById(`probaImg${digit}`);
+        probaImg.style.width = `${res[digit] * 150 + 8}px`;
+        let probaText = document.getElementById(`probaText${digit}`);
+        probaText.innerText = `${Math.round(res[digit] * 100)}%`
+        let probaDiv = document.getElementById(`probaDiv${digit}`);
+        probaDiv.style.border = 'solid rgba(0, 0, 0, 0) 1px';
+        probaDiv.style.borderRadius = '8px';
     }
-    let html = "";
-    let proba;
-    let digit = 0;
-    for (proba of res) {
-        html = html.concat(`<div style="height: 24px">${digit}<img src="resources/nothingToSeeHere.png" width="${Math.round(proba * 206) + 8}px" height="16px" style="display: inline; border-radius: 4px; margin-top: 8px; margin-left: 8px; margin-right: 8px">${Math.round(proba * 100)}%</div>`);
-        digit += 1;
+
+    let highest = 0;
+    for (let digit = 1; digit < 10; digit++) {
+        if (res[digit] > res[highest]) highest = digit;
     }
-    resElem.innerHTML = html;
+    let probaDiv = document.getElementById(`probaDiv${highest}`);
+        probaDiv.style.borderColor = '#1c344c';
+
 }
+
 function resizeArray(inputArray) {
     const INPUT_ARRAY_SIZE = 280;
     const OUTPUT_ARRAY_SIZE = 28;

@@ -1,11 +1,10 @@
 #canvas{
     margin-left: 20%;
 }
-
-#mainPage {
-    display: block;
-}
-
-#supportPage {
+.gamePics{
     display: none;
+}
+#instruction{
+    margin-left: 30%;
+    font-size: 35px;
 }

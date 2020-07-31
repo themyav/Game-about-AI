@@ -76,7 +76,7 @@ function check() {
 function updateUI() {
     if (tasks_done !== 0) {
         document.getElementById("score_percent").innerHTML = Math.floor(tasks_done_correct / tasks_done * 100) + "%";
-        document.getElementById("score").innerHTML = tasks_done_correct + "<br>верно из<br>" + tasks_done;
+        document.getElementById("score").innerHTML = tasks_done_correct + " верно из " + tasks_done;
     }
 
     turns_to_inc_word -= 1;
@@ -127,6 +127,4 @@ function addRule() {
     rules_left_on_cur_length -= 1;
 }
 
-function togglePause() {
-    return;
-}
+function togglePause() {}

@@ -1,11 +1,27 @@
-#mainPage {
-    display: block;
+.match {
+    border-radius: 8px;
+    width: 24px;
 }
 
-#supportPage {
-    display: none;
+.match:hover {
+    background: rgba(0, 0, 0, 0.13);
 }
 
-match {
-    width: 16px;
+.input {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    background: rgba(255, 255, 255, 0);
+    border: #3c3c3c 2px solid;
+    border-radius: 8px;
+    width: 40px;
+    height: 24px;
+    margin: 4px;
+    cursor: pointer;
+}
+
+.gamePlayground {
+    width: 600px;
+    margin-top: 16px;
+    margin-left: auto;
+    margin-right: auto;
 }

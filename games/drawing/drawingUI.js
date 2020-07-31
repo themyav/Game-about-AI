@@ -16,8 +16,13 @@ function runScript() {
     canvas.addEventListener('mousemove', mouseMove);
     canvas.addEventListener('mousedown', mouseDown);
     canvas.addEventListener('mouseout', mouseOut);
-    //canvas.addEventListener('mouseup', mouseUp);
-    document.addEventListener('mouseup', mouseUp);
+    canvas.addEventListener('mouseup', mouseUp);
+
+    canvas.addEventListener('touchmove', mouseMove);
+    canvas.addEventListener('touchstart', mouseDown);
+    canvas.addEventListener('touchcancel', mouseOut);
+    canvas.addEventListener('touchend', mouseUp);
+
     ctx.lineWidth = 10;                                       /* РАЗМЕР КИСТИ */
     ctx.lineCap = "round";
     drawing = false;
@@ -53,18 +58,21 @@ function mouseDown(ev) {
 
     oldX = ev.clientX - rect.left;
     oldY = ev.clientY - rect.top;
+    console.log('down');
 }
 
 function mouseMove(ev) {
     if(drawing) {
         doDrawEvent(ev);
     }
+    console.log('move');
 }
 
 function mouseOut(ev) {
     if(drawing) {
         doDrawEvent(ev);
     }
+    console.log('out');
     /*
     drawing = false;
     console.log('Здесь могло быть ваше предсказание');
@@ -76,7 +84,7 @@ function mouseUp(ev) {
     drawing = false;
     writeInMatrix();
     out_predict(matrix);
-    /* ТУТ ВЫЗОВ ФУНКЦИИ ПРИ ОТПУСКАНИИ МЫШИ*/
+    console.log('up');
 }
 
 function clearCanvas() {
@@ -90,7 +98,14 @@ function clearCanvas() {
             matrix[i][q] = 0;
         }
     }
-    //updateUI([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    for (let i = 0; i <= 9; i++) {
+        let idImg = 'probaImg' + i;
+        let idText = 'probaText' + i;
+        document.getElementById(idImg).style.width = '8px';
+        document.getElementById(idText).innerText = '0%';
+        document.getElementById(`probaDiv${i}`).style.border = 'solid rgba(0, 0, 0, 0) 1px';
+    }
+    writeInMatrix();
 }
 
 function writeInMatrix() {
@@ -105,3 +120,5 @@ function writeInMatrix() {
         }
     }
 }
+
+function togglePause() {}
