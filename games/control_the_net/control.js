@@ -90,7 +90,7 @@ class Node{
     }
     draw_Node(){
         context.drawImage(node, this.n_x, this.n_y);
-        context.font = "30px arial";
+        context.font = "30px Open Sans";
         context.fillStyle = "black";
         context.fillText(this.weight, this.n_x + 35, this.n_y + 65); //здесь нужно сделать выравнивание
     }
@@ -107,7 +107,7 @@ class Information{
     }
     draw_Information(){
         context.drawImage(information, this.inf_x, this.inf_y);
-        context.font = "20px arial";
+        context.font = "20px Open Sans";
         context.fillText(this.weight, this.inf_x + 15, this.inf_y + 40);
     }
 }
@@ -128,7 +128,7 @@ function updateCanvas() {
    drawLine([20.5 + information.width / 2, 50, 20.5 + information.width / 2, nodes[0].y + node.height / 2, nodes[0].x + node.width / 2, nodes[0].y + node.height / 2], 5, true, false);
     drawLine([nodes[nodes.length - 1].x + node.width / 2, nodes[nodes.length - 1].y + node.height / 2, nodes[nodes.length - 1].x + node.width / 2, 850, 1050, 850], 5, true, false);
 
-    context.font = "25px Arial";
+    context.font = "25px Open Sans";
     context.fillText('Нажми на любую клавишу, чтобы начать движение!', 590, 25);
 
     context.drawImage(input_pic, 20, 20);
